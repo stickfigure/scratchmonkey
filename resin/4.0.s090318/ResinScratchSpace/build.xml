@@ -1,0 +1,99 @@
+<project name="Resin Scratch Space" basedir="." default="prepare-war">
+
+	<property name="test1.war.name" value="test1.war"/>
+	<property name="build.dir" value="${basedir}/build/${test1.war.name}/" />
+	<property name="dist.dir" value="${basedir}/dist" />
+	<property name="resin.dir" value="/java/resin-4.0.s090318/" />
+	<property name="webapp.deploy.dir" value="${resin.dir}/webapps/"/>
+	
+	<path id="build.class.path">
+		<fileset dir="${basedir}/lib" includes="**/*.jar" />
+		<fileset dir="${resin.dir}/lib" includes="**/*.jar" />
+	</path>
+	
+	<path id="source.path">
+		<fileset dir="./src" includes="**/*.java" />
+	</path>
+
+	<target name="clean">
+		<delete dir="${dist.dir}" />
+		<delete dir="${build.dir}" />
+		<mkdir dir="${dist.dir}" />
+		<mkdir dir="${build.dir}" />
+	</target>
+
+	<target name="build" description="Build" depends="clean">
+		<javac classpathref="build.class.path" destdir="${build.dir}/web-inf/classes/">
+			<sourcepath refid="source.path" />
+		</javac>
+	</target>
+
+	<target name="prepare-war">
+		<copy todir="${build.dir}/">
+			<fileset dir="${basedir}/test1/web/" includes="**/*"/>
+		</copy>
+		
+		<copy todir="${build.dir}/web-inf/">
+			<fileset dir="${basedir}/test1/web/" includes="resin-web.xml"/>
+		</copy>
+
+		<copy todir="${build.dir}/web-inf/lib/">
+			<fileset dir="${basedir}/lib/" includes="**/*.jar"/>
+		</copy>
+		
+		<copy todir="${build.dir}/web-inf/classes/">
+			<fileset dir="${basedir}/test1/src" includes="**/*"/>
+		</copy>
+		
+		<copy todir="${build.dir}/web-inf/classes/meta-inf/">
+			<fileset dir="${basedir}/meta/" includes="beans.xml"/>
+			<fileset dir="${basedir}/meta/" includes="persistence.xml"/>
+		</copy>
+	</target>
+	
+	<target name="war" description="Build dist package" depends="build">
+		<jar destfile="${dist.dir}/${dist.name}.war" 
+			basedir="${build.dir}" excludes="**\*.war">
+			<metainf><include name="${basedir}/meta/beans.xml"/></metainf>
+
+		</jar>
+	</target>
+	
+    <target name="war-exploded" depends="war" description="Explodes the War">
+        
+    </target>
+
+	<target name="init-dist">
+		<input addproperty="version" message="Version number?" defaultvalue="0.1" />
+		<property name="dist.name" value="${ant.project.name}-${version}" />
+	</target>
+
+	<target name="del_deploy" description="deleted the deployed webapps">
+		<delete dir="${webapp.deploy.dir}/${test1.war.name}/" includes="*"/>
+		<delete dir="${webapp.deploy.dir}/${test1.war.name}/" failonerror="false"/>
+    </target>
+
+	
+	<target name="clean_deploy" description="Clean the deployed webapp, then deploys" depends="del_deploy, deploy">
+	</target>
+	
+	<target name="deploy" description="Deployes War" depends="prepare-war">		
+		<copy todir="${webapp.deploy.dir}/" overwrite="true" preservelastmodified="true" >
+			<fileset dir="${build.dir}/../" includes="**.war/**/*" excludes="/resinscratchspace" />
+		</copy>
+	</target>
+	
+
+	<target name="javadoc" depends="build">
+		<javadoc access="public" author="true"
+			classpathref="build.class.path" destdir="${build.dir}/javadoc" 
+			nodeprecated="false" nodeprecatedlist="false" noindex="false" 
+			nonavbar="false" notree="false" packagenames="com.googlecode.condistripes" 
+			source="1.5" sourcepath="src" splitindex="true" use="true" version="true">
+
+			<link href="http://java.sun.com/j2se/1.5.0/docs/api/" />
+			<link href="http://java.sun.com/j2ee/1.4/docs/api/" />
+		</javadoc>
+
+	</target>
+</project>

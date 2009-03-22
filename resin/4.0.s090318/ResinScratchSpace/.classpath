@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="auth/src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/stripes.jar" sourcepath="/stripes (trunk)"/>
+	<classpathentry kind="lib" path="C:/java/resin-4.0.s090318/lib/activation.jar"/>
+	<classpathentry kind="lib" path="C:/java/resin-4.0.s090318/lib/javaee-16.jar"/>
+	<classpathentry kind="lib" path="C:/java/resin-4.0.s090318/lib/javamail-141.jar"/>
+	<classpathentry kind="lib" path="C:/java/resin-4.0.s090318/lib/jaxstream-15.jar"/>
+	<classpathentry kind="lib" path="C:/java/resin-4.0.s090318/lib/jaybird-full-2.1.6.jar"/>
+	<classpathentry kind="lib" path="C:/java/resin-4.0.s090318/lib/jsf-12.jar"/>
+	<classpathentry kind="lib" path="C:/java/resin-4.0.s090318/lib/osgi-14.jar"/>
+	<classpathentry kind="lib" path="C:/java/resin-4.0.s090318/lib/postgresql-8.3-604.jdbc4.jar"/>
+	<classpathentry kind="lib" path="C:/java/resin-4.0.s090318/lib/resin.jar"/>
+	<classpathentry kind="lib" path="C:/java/resin-4.0.s090318/lib/webutil.jar"/>
+	<classpathentry kind="lib" path="lib/commons-logging.jar"/>
+	<classpathentry kind="lib" path="lib/ConDI-Stripes-0.1.jar"/>
+	<classpathentry kind="lib" path="lib/cos.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-1.2.15.jar"/>
+	<classpathentry kind="output" path="build/eclipse/"/>
+</classpath>

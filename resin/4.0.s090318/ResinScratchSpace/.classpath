@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="auth/src"/>
+	<classpathentry kind="src" path="test1/src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/stripes.jar" sourcepath="/stripes (trunk)"/>
 	<classpathentry kind="lib" path="C:/java/resin-4.0.s090318/lib/activation.jar"/>

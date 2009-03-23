@@ -1,5 +1,7 @@
 <project name="Resin Scratch Space" basedir="." default="prepare-war">
 
+	<property file="build.properties" />
+
 	<property name="test1.war.name" value="test1.war"/>
 	<property name="build.dir" value="${basedir}/build/${test1.war.name}/" />
 	<property name="dist.dir" value="${basedir}/dist" />
@@ -23,7 +25,7 @@
 	</target>
 
 	<target name="build" description="Build" depends="clean">
-		<javac classpathref="build.class.path" destdir="${build.dir}/web-inf/classes/">
+		<javac classpathref="build.class.path" destdir="${build.dir}/WEB-INF/classes/">
 			<sourcepath refid="source.path" />
 		</javac>
 	</target>
@@ -33,19 +35,19 @@
 			<fileset dir="${basedir}/test1/web/" includes="**/*"/>
 		</copy>
 		
-		<copy todir="${build.dir}/web-inf/">
+		<copy todir="${build.dir}/WEB-INF/">
 			<fileset dir="${basedir}/test1/web/" includes="resin-web.xml"/>
 		</copy>
 
-		<copy todir="${build.dir}/web-inf/lib/">
+		<copy todir="${build.dir}/WEB-INF/lib/">
 			<fileset dir="${basedir}/lib/" includes="**/*.jar"/>
 		</copy>
 		
-		<copy todir="${build.dir}/web-inf/classes/">
+		<copy todir="${build.dir}/WEB-INF/classes/">
 			<fileset dir="${basedir}/test1/src" includes="**/*"/>
 		</copy>
 		
-		<copy todir="${build.dir}/web-inf/classes/meta-inf/">
+		<copy todir="${build.dir}/WEB-INF/classes/meta-inf/">
 			<fileset dir="${basedir}/meta/" includes="beans.xml"/>
 			<fileset dir="${basedir}/meta/" includes="persistence.xml"/>
 		</copy>

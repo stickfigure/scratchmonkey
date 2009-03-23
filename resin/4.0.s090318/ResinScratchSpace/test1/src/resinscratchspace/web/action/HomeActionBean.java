@@ -2,7 +2,12 @@ package resinscratchspace.web.action;
 
 import javax.inject.Current;
 
-import net.sourceforge.stripes.action.*;
+import net.sourceforge.stripes.action.ActionBean;
+import net.sourceforge.stripes.action.ActionBeanContext;
+import net.sourceforge.stripes.action.DefaultHandler;
+import net.sourceforge.stripes.action.ForwardResolution;
+import net.sourceforge.stripes.action.Resolution;
+import net.sourceforge.stripes.action.UrlBinding;
 import net.sourceforge.stripes.util.Log;
 
 @UrlBinding("/home")
@@ -12,13 +17,11 @@ public class HomeActionBean implements ActionBean {
 	@Current
 	resinscratchspace.biz.SecurityManager secMgr;
 	
-	@Override
 	public ActionBeanContext getContext() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public void setContext(ActionBeanContext context) {
 		// TODO Auto-generated method stub
 

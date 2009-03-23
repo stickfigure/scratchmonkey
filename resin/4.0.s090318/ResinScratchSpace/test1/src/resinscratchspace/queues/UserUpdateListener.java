@@ -18,9 +18,7 @@ import resinscratchspace.entities.UserLogEntry;
 public class UserUpdateListener implements MessageListener {
 	private static final Logger log = Logger.getLogger(UserUpdateListener.class.getName());
 	@Current EntityManager entMgr;
-	
 	  
-	@Override
 	public void onMessage(Message qMsg) {
 		try {
 			User u = (User)((ObjectMessage) qMsg).getObject();

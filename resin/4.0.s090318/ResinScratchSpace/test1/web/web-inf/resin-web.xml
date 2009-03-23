@@ -20,8 +20,8 @@
     
     <driver type="org.postgresql.Driver">
       <url>jdbc:postgresql://localhost/test</url>
-      <user>test</user>
-      <password>test</password>
+      <user>postgres</user>
+      <password>postgres</password>
     </driver>
   
   </database>

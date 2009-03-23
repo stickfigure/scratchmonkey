@@ -13,7 +13,6 @@ public class SecurityManagerImpl implements SecurityManager{
 	@Current
 	LoginStatus loginStatus;
 	
-	@Override
 	public boolean isAuthenticated(){
 		return (this.loginStatus != null && this.loginStatus.isLoggedIn());
 	}

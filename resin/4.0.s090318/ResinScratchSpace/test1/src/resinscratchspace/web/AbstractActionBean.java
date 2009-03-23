@@ -19,12 +19,10 @@ public class AbstractActionBean implements ActionBean {
 	@Current
 	protected LoginStatus loginStatus;
 
-	@Override
 	public ActionBeanContext getContext() {
 		return this.context;
 	}
 
-	@Override
 	public void setContext(ActionBeanContext val) {
 		this.context = val;
 	}

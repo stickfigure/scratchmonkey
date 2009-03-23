@@ -18,8 +18,6 @@ public class UserEventListener implements MessageListener {
 	private static final Logger log = Logger.getLogger(UserEventListener.class.getName());
 	@Current EntityManager entMgr;
 	
-	  
-	@Override
 	public void onMessage(Message qMsg) {
 		try {
 			UserLogEntry ule = (UserLogEntry)((ObjectMessage) qMsg).getObject();

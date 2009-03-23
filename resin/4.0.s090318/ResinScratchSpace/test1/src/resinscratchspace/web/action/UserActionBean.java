@@ -13,14 +13,21 @@ import resinscratchspace.web.AbstractActionBean;
 @UrlBinding("/user/{id}/{event}")
 public class UserActionBean extends AbstractActionBean {
 	private static final Log log = Log.getInstance(UserActionBean.class);
+	
 	@Validate(required=true)
 	protected long id;
 
+	protected void setId(long value) { 
+		log.debug("Setting id = " + value);
+		this.id = value; 
+	}
+	
 	//stored as context for the resolution (jsp page rendering)
 	protected User u;
 	
 	@DefaultHandler
 	@HandlesEvent("view")
+	@Validate
 	public Resolution view(){
 		log.debug("finding user, id=" + id);
 		this.u = em.find(User.class, id);
@@ -28,6 +35,7 @@ public class UserActionBean extends AbstractActionBean {
 	}
 	
 	@HandlesEvent("edit")
+	@Validate
 	public Resolution edit(){
 		this.u = this.loginStatus.getUser();
 		log.debug("forwarding to useredit.jsp");

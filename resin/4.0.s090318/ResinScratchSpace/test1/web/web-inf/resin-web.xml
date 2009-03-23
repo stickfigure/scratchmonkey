@@ -4,9 +4,6 @@
 
   <ejb-stateless-bean class="resinscratchspace.biz.SecurityManagerImpl"/>
 
-
-
-		 
   <database jndi-name="jdbc/test">
   	
   	<ping>true</ping>

@@ -10,7 +10,7 @@ import net.sourceforge.stripes.validation.Validate;
 import resinscratchspace.entities.User;
 import resinscratchspace.web.AbstractActionBean;
 
-@UrlBinding("/user/{id}/{event}")
+@UrlBinding("/user/{id}/{$event}")
 public class UserActionBean extends AbstractActionBean {
 	private static final Log log = Log.getInstance(UserActionBean.class);
 	
@@ -22,12 +22,15 @@ public class UserActionBean extends AbstractActionBean {
 		this.id = value; 
 	}
 	
+	@Validate(required=true)
+	protected long num;
+	
+	
 	//stored as context for the resolution (jsp page rendering)
 	protected User u;
 	
 	@DefaultHandler
 	@HandlesEvent("view")
-	@Validate
 	public Resolution view(){
 		log.debug("finding user, id=" + id);
 		this.u = em.find(User.class, id);

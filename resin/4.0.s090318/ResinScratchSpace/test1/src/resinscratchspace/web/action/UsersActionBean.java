@@ -12,7 +12,7 @@ import net.sourceforge.stripes.validation.Validate;
 import resinscratchspace.entities.User;
 import resinscratchspace.web.AbstractActionBean;
 
-@UrlBinding("/users/{event}")
+@UrlBinding("/users/{$event}")
 public class UsersActionBean extends AbstractActionBean {
 	private static final Log log = Log.getInstance(UsersActionBean.class);
 	

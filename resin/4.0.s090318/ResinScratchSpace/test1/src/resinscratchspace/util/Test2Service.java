@@ -16,7 +16,6 @@ public class Test2Service {
 	@PostConstruct
 	private void postConstruct()
 	{
-		System.out.println("test2 construction starting");
 		log.log(Level.WARNING,"test2 construction starting");
 	}
 	@SuppressWarnings("unused")
@@ -24,6 +23,5 @@ public class Test2Service {
 	private void preDestroy()
 	{
 		log.log(Level.WARNING,"test2 destruction starting");
-		System.out.println("test2 destruction starting");
 	}
 }

@@ -1,9 +1,17 @@
-<web-app xmlns="http://caucho.com/ns/resin" 
-		 xmlns:jms="urn:java:com.caucho.jms" 
-		 xmlns:ejb="urn:java:com.caucho.ejb">
+<web-app 	xmlns="http://caucho.com/ns/resin" 
+		 	xmlns:jms="urn:java:com.caucho.jms" 
+		 	xmlns:ejb="urn:java:com.caucho.ejb"
+			xmlns:util="urn:java:resinscratchspace.util"
+			xmlns:biz="urn:java:resinscratchspace.biz"
+			>
 
-  <ejb-stateless-bean class="resinscratchspace.biz.SecurityManagerImpl"/>
-
+<!--  <ejb-stateless-bean class="resinscratchspace.biz.SecurityManagerImpl"/>-->
+  
+  <biz:SecurityManagerImpl/>
+  <util:BootstrapperBean/>
+  <util:TestService/>
+  
+  
   <database jndi-name="jdbc/test">
   	
   	<ping>true</ping>
@@ -24,12 +32,23 @@
   
   <jms:JmsConnectionFactory/>
 
-  <jms:MemoryQueue>
-    <Named>userUpdater</Named>
-  </jms:MemoryQueue>
+  <jms:FileQueue>
+    <Named>userUpdates</Named>
+  </jms:FileQueue>
 
-
+<!--  <jms:FileQueue>-->
+<!--  	<JndiName>jms/userEvents</JndiName>-->
+<!--  	<jms:name>userEvents</jms:name>-->
+<!--    <Named>userEvents</Named>-->
+<!--  </jms:FileQueue>-->
+  
   <ejb-message-bean class="resinscratchspace.queues.UserUpdateListener">
-    <destination>#{userUpdater}</destination>
+    <destination>#{userUpdates}</destination>
   </ejb-message-bean>
+
+<!-- <ejb-message-bean class="resinscratchspace.queues.UserEventListener">-->
+<!--    <destination>#{userEvents}</destination>-->
+<!--  </ejb-message-bean>-->
+
+
 </web-app>

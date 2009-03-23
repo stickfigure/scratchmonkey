@@ -40,5 +40,11 @@ public class UserLogEntry implements Serializable{
 	}
 	
 	public long getId(){return this.id;}
+	public User getUser(){return this.user;}
+	
+	public String toString(){
+		return (user.getFriendlyName() + "(" + user.getId()  + "): " + event);
+		
+	}
 	
 }

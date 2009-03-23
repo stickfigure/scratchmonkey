@@ -21,7 +21,9 @@ public class LoginActionBean  extends AbstractActionBean {
 	private static final Log log = Log.getInstance(LoginActionBean.class);
 
 	@SuppressWarnings("unchecked")
+	//@Name("userUpdates")
 	@Current
+	//@Resource(mappedName="userUpdates")
 	private BlockingQueue userUpdateQueue;	
 
   	@Validate(required = true)

@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+
+<project name="ContainerTest" default="ear" basedir=".">
+
+	<property name="name" value="${ant.project.name}" />
+	
+	<property file="build.properties" />
+
+	<property name="build.dir" location="build" />
+	
+	<property name="build.debug" value="on" />
+	<property name="build.deprecation" value="on" />
+
+	<property name="deploy.dir" location="${jboss.dir}/server/default/deploy" />
+
+	<property name="build.classes.dir" location="${build.dir}/classes" />
+	
+	<property name="build.ejb.file" location="${build.dir}/${name}.jar" />
+	<property name="build.sar.file" location="${build.dir}/${name}.sar" />
+	<property name="build.war.file" location="${build.dir}/${name}.war" />
+	<property name="build.ear.file" location="${build.dir}/${name}.ear" />
+
+	<property name="javasrc.dir" location="src" />
+	<property name="meta.dir" location="meta" />
+	<property name="content.dir" location="content" />
+	<property name="lib.dir" location="lib" />
+
+	<path id="master.classpath">
+		<pathelement path="${java.class.path}" />
+		
+		<fileset dir="${lib.dir}">
+			<include name="**/*.jar" />
+		</fileset>
+
+		<fileset dir="${jboss.dir}">
+			<include name="client/*.jar"/>
+			<include name="common/lib/*.jar"/>
+		</fileset>
+	</path>
+	
+	<path id="run.classpath">
+		<path refid="master.classpath" />
+		<pathelement path="${build.classes.dir}" />
+	</path>
+
+ 	<target name="classes">
+		<mkdir dir="${build.classes.dir}" />
+ 		
+		<javac srcdir="${javasrc.dir}"
+				destdir="${build.classes.dir}"
+				debug="${build.debug}"
+				deprecation="${build.deprecation}">
+			<classpath refid="master.classpath" />
+		</javac>
+	</target>
+
+	<target name="sar" depends="classes">
+		<jar jarfile="${build.sar.file}">
+			<metainf dir="${meta.dir}">
+				<include name="jboss-service.xml"/>
+			</metainf>
+
+			<!-- <fileset dir="${lib.dir}"/> -->
+		</jar>
+	</target>
+	
+	<target name="ejb" depends="classes">
+		<jar jarfile="${build.ejb.file}">
+			<metainf dir="${meta.dir}">
+				<include name="persistence.xml" />
+			</metainf>
+			<fileset dir="${build.classes.dir}"/>
+		</jar>
+	</target>
+	
+	<target name="war" depends="classes">
+		<war destfile="${build.war.file}" webxml="${meta.dir}/web.xml">
+			<!--
+			<webinf dir="${meta.dir}">
+				<exclude name="web.xml" />
+			</webinf>
+			-->
+			
+			<fileset dir="${content.dir}" />
+			
+			<!--
+			<classes dir="${build.classes.dir}" />
+
+			<lib dir="${frontend.lib.dir}">
+				<exclude name="buildonly/**"/>
+			</lib>
+			-->
+		</war>
+	</target>
+	
+	<target name="ear" depends="ejb, war">
+		<ear destfile="${build.ear.file}" appxml="${meta.dir}/application.xml">
+			<metainf dir="${meta.dir}">
+				<include name="jboss-app.xml" />
+				<include name="jboss-service.xml" />
+			</metainf>
+			<fileset file="${build.ejb.file}" />
+			<!--
+			<fileset file="${build.sar.file}" />
+			<fileset file="${build.war.file}" />
+			-->
+		</ear>
+	</target>
+	
+	<target name="deploy" depends="ear">
+		<copy file="${build.ear.file}" todir="${deploy.dir}" />
+	</target>
+
+	<target name="clean">
+		<delete dir="${build.dir}" />
+	</target>
+	
+	<target name="runclient" depends="classes">
+		<java classname="test.Client" classpathref="run.classpath"/>
+	</target>
+</project>
+

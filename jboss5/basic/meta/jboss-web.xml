@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<jboss-web>
+	<!--
+	<security-domain>java:/jaas/ct</security-domain>
+	-->
+</jboss-web>

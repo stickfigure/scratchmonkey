@@ -3,11 +3,9 @@ package resinscratchspace.web.action;
 import java.util.concurrent.BlockingQueue;
 
 import javax.inject.Current;
-import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.Query;
-import javax.transaction.UserTransaction;
 
 import net.sourceforge.stripes.action.*;
 import net.sourceforge.stripes.util.Log;
@@ -16,24 +14,11 @@ import net.sourceforge.stripes.validation.SimpleError;
 import net.sourceforge.stripes.validation.Validate;
 import net.sourceforge.stripes.validation.ValidationError;
 import resinscratchspace.entities.User;
-import resinscratchspace.web.LoginStatus;
+import resinscratchspace.web.AbstractActionBean;
 
 @UrlBinding("/login")
-public class LoginActionBean implements ActionBean {
+public class LoginActionBean  extends AbstractActionBean {
 	private static final Log log = Log.getInstance(LoginActionBean.class);
-	
-	//@Current
-	protected ActionBeanContext context;
-	
-	@SuppressWarnings("unused")
-	@Current
-	private UserTransaction uTrans;
-
-	@Current
-	private EntityManager manager;
-
-	@Current
-	protected LoginStatus loginStatus;
 
 	@SuppressWarnings("unchecked")
 	@Current
@@ -47,16 +32,6 @@ public class LoginActionBean implements ActionBean {
 
 	public void setEmail(String val){ this.email=val;}
 	public void setPassword(String val){ this.password=val;}
-
-	@Override
-	public ActionBeanContext getContext() {
-		return this.context;
-	}
-
-	@Override
-	public void setContext(ActionBeanContext val) {
-		this.context = val;
-	}
 
 	@DefaultHandler
 	@DontValidate
@@ -80,14 +55,10 @@ public class LoginActionBean implements ActionBean {
 	private boolean doLogin() {
 		log.debug("Starting doLogin: (email/pass) " + this.email + "/" + this.password);
 		
-		if(this.manager == null) log.error("No EntityManager Injected!");
-		if(this.loginStatus == null) log.error("No LoginStatus Injected!");
-		if(this.userUpdateQueue == null) log.error("No Queue Ijected!");
-
 		//the user
 		User u = null; 
 		
-		Query q = manager.createQuery("select u from User u where u.password = :pw and u.email= :email");
+		Query q = this.em.createQuery("select u from User u where u.password = :pw and u.email= :email");
 		log.debug("Created Query (from entity manager)");
 		
 		q.setParameter("pw", this.password);
@@ -112,11 +83,11 @@ public class LoginActionBean implements ActionBean {
 			this.loginStatus.setUser(u);
 		}
 		
-		//queueUserUpdate(u);
+		queueUserUpdate(u);
 		return true;
 	}
 	
-	@SuppressWarnings({ "unchecked", "unused" })
+	@SuppressWarnings("unchecked")
 	private void queueUserUpdate(User u){
 		try {
 			this.userUpdateQueue.put(u);

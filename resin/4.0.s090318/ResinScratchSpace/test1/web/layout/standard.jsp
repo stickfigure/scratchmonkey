@@ -21,7 +21,7 @@
                 </div>
 
                 <div id="footer">
-                	<s:link href="/logout">Logout</s:link> | <s:link href="/login">Login</s:link>
+    	            <jsp:include page="/layout/footer.jsp"/>
                 </div>
             </div>
         </body>

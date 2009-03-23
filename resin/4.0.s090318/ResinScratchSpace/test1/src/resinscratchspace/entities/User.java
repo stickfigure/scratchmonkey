@@ -1,5 +1,6 @@
 package resinscratchspace.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
@@ -8,8 +9,10 @@ import javax.persistence.*;
 
 @Entity()
 @Table(name="Users")
-public class User {
+public class User implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
 	@GeneratedValue
 	@Id
 	protected long id;

@@ -1,35 +1,13 @@
 package resinscratchspace.web.action;
 
-import javax.inject.Current;
-import javax.transaction.UserTransaction;
-
 import net.sourceforge.stripes.action.*;
 import net.sourceforge.stripes.util.Log;
-import resinscratchspace.web.LoginStatus;
+import resinscratchspace.web.AbstractActionBean;
 
-@UrlBinding("/logout/${view}")
-public class LogoutActionBean implements ActionBean {
+@UrlBinding("/logout")
+public class LogoutActionBean extends AbstractActionBean {
 	private static final Log log = Log.getInstance(LogoutActionBean.class);
 	
-	//@Current
-	ActionBeanContext context;
-	
-	@SuppressWarnings("unused")
-	@Current
-	private UserTransaction uTrans;
-
-	@Current
-	LoginStatus loginStatus;
-
-	@Override
-	public ActionBeanContext getContext() {
-		return this.context;
-	}
-
-	@Override
-	public void setContext(ActionBeanContext val) {
-		this.context = val;
-	}
 
 	@DefaultHandler
 	@DontValidate

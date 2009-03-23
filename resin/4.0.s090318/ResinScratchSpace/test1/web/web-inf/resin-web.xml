@@ -32,9 +32,7 @@
   </jms:MemoryQueue>
 
 
-  <!-- 
   <ejb-message-bean class="resinscratchspace.queues.UserUpdateListener">
     <destination>#{userUpdater}</destination>
   </ejb-message-bean>
-   -->
 </web-app>

@@ -23,7 +23,7 @@ public class UserUpdateListener implements MessageListener {
 	public void onMessage(Message qMsg) {
 		try {
 			User u = (User)((ObjectMessage) qMsg).getObject();
-			entMgr.persist(u);
+			entMgr.merge(u);
 			log.log(Level.INFO, "User updated: " + u.getFriendlyName() + "(" + u.getId()+ ")");
 		} catch (JMSException e) {
 			log.log(Level.SEVERE, e.getStackTrace().toString());

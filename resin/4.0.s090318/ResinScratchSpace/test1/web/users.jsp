@@ -4,20 +4,20 @@
 	<stripes:layout-component name="contents">
 		<stripes:errors />
 
-		<c:forEach items="${users}" var="user" varStatus="rowstat">
+		<c:forEach items="${actionBean.users}" var="user" varStatus="rowstat">
 			<div><s:label for="email" >Email:</s:label>
-				<a id="email" href="mailto:///${user.email}">${user.email}</a>
+				<a id="email" href="mailto://${user.email}">${user.email}</a>
 			</div>
 			<div><s:label for="fullName" >Name:</s:label>${user.fullName}</div>
-			<div><s:label for="friendlyName" >Nick Name:</s:label>${user.friendName}</div>
+			<div><s:label for="friendlyName" >Nick Name:</s:label>${user.friendlyName}</div>
 			<div> 
-				<s:link beanclass="${com.googlecode.web.action.UserActionBean}" event="View">View
+				<s:link beanclass="resinscratchspace.web.action.UserActionBean" event="view">View
 					<s:param name="id" value="${user.id}"></s:param>
 				</s:link>
 			</div>
 			
 			<div>
-				<c:forEach items="${user.log}" var="log">
+				<c:forEach items="${user.getLog()}" var="log">
 					${log.id}: ${log.entry}<br/>
 				</c:forEach>
 			</div>

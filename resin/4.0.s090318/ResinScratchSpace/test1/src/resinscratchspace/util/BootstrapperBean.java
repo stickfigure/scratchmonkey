@@ -5,16 +5,14 @@ import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.ejb.Stateful;
-import javax.inject.Current;
 
 import com.caucho.config.Service;
 
-@Stateful
 @Service
 public class BootstrapperBean implements Bootstrapper {
-	@Current
-	private Logger log;	
+//	@Current
+//	private Logger log;	
+	private static final Logger log = Logger.getLogger(BootstrapperBean.class.getName());
 
 	@PostConstruct
 	public void init(){

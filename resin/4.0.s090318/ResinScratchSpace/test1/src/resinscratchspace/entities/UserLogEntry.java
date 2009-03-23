@@ -1,6 +1,7 @@
 package resinscratchspace.entities;
 
 import java.io.Serializable;
+import java.util.logging.Logger;
 
 import javax.inject.Initializer;
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import javax.persistence.*;
 public class UserLogEntry implements Serializable{
 
 	private static final long serialVersionUID = 1L;
+	private static final Logger log = Logger.getLogger(UserLogEntry.class.getName());
 
 	//private Logger log = Logger.getLogger(UserLogEntry.class.getName());	
 	

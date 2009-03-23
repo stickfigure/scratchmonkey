@@ -7,12 +7,6 @@ import com.caucho.config.Service;
 
 @Service
 abstract public class AbstractService {
-	
-	@PostConstruct
-	private void postConstruct(){start();}
-	@PreDestroy
-	private void preDestroy(){stop();}
-	
-	abstract public void start();
-	abstract public void stop();
+	@PostConstruct abstract protected void start();
+	@PreDestroy	abstract protected void stop();
 }

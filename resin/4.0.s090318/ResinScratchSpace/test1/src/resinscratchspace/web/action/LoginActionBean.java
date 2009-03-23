@@ -90,6 +90,7 @@ public class LoginActionBean  extends AbstractActionBean {
 	@SuppressWarnings("unchecked")
 	private void queueUserUpdate(User u){
 		try {
+			u.updateLastLogin();
 			this.userUpdateQueue.put(u);
 		} catch (InterruptedException e) {
 			log.error(e);

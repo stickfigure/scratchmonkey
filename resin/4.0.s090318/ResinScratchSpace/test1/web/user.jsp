@@ -11,8 +11,10 @@
 			<div><s:label for="friendlyName" >Nick Name:</s:label>${user.friendName}</div>
 			
 			<div> 
-				<a href="/user/0/edit">Edit</a>
-<!--				<s:link beanclass="${currentAction.clss}" event="edit">Edit</s:link> -->
+<!--				<a href="/user/0/edit">Edit</a>-->
+				<s:link beanclass="${currentAction.clss}" event="edit">Edit
+					<s:param name="id" value="${loginStatus.user.id}"></s:param>
+				</s:link> 
 			</div>			
 		</stripes:form>
 	</stripes:layout-component>

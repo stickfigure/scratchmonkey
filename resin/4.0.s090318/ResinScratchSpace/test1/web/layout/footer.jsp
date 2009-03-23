@@ -1,6 +1,8 @@
 <%@ include file="../taglibs.jsp" %>
 
-<s:link href="/login">Login</s:link>
+<s:link beanclass="resinscratchspace.web.action.LoginActionBean">Login</s:link>
+|
+<s:link beanclass="resinscratchspace.web.action.UsersActionBean">Users List</s:link>
 
 <c:if test="${loginStatus.loggedIn}">
 	|	

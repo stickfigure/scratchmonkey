@@ -12,6 +12,7 @@ import javax.jms.ObjectMessage;
 import javax.persistence.EntityManager;
 
 import resinscratchspace.entities.User;
+import resinscratchspace.entities.UserLogEntry;
 
 @MessageDriven()
 public class UserUpdateListener implements MessageListener {
@@ -23,6 +24,8 @@ public class UserUpdateListener implements MessageListener {
 	public void onMessage(Message qMsg) {
 		try {
 			User u = (User)((ObjectMessage) qMsg).getObject();
+			UserLogEntry ule = new UserLogEntry(u, "Login: " + u.getLastLogin());
+			entMgr.persist(ule);
 			entMgr.merge(u);
 			log.log(Level.INFO, "User updated: " + u.getFriendlyName() + "(" + u.getId()+ ")");
 		} catch (JMSException e) {

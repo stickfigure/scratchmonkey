@@ -8,11 +8,12 @@
 		</c:when>
 		
 		<c:otherwise>
-			<p>You are already logged in as '${loginStatus.user.email}'. Logging in again will cause you to be logged out, and then
-			re-logged in with the email and password supplied.</p>
+			<p>You are logged in as '${loginStatus.user.email}'.</p>
 
 			<br/>
-			Looks like even the ejbs think so ! ${isAuthenticatedToBackend}
+			<c:if test="${isAuthenticatedToBackend}">
+				Looks, even the ejbs think so! 
+			</c:if>
 		</c:otherwise>
 		
 	</c:choose>

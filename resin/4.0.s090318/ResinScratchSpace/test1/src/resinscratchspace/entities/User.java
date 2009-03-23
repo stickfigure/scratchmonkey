@@ -1,14 +1,15 @@
 package resinscratchspace.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
-import java.util.Set;
 
 import javax.inject.Initializer;
 import javax.persistence.*;
 
 @Entity()
 @Table(name="Users")
+
 public class User implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -37,9 +38,11 @@ public class User implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	protected Date lastLogin;
 	
-	//@OneToMany(targetEntity=UserLogEntry.class)
-	@Transient
-	protected Set<UserLogEntry> logEntries;
+	
+	//@OneToMany(targetEntity=UserLogEntry.class, cascade={CascadeType.ALL})
+	//@Transient
+	@OneToMany
+	protected Collection<UserLogEntry> logEntries;
 	
 	//needed for container creation
 	protected User(){}
@@ -79,7 +82,7 @@ public class User implements Serializable {
 		this.lastLogin = value;
 	}
 	
-	public Set<UserLogEntry> GetLog(){	
+	public Collection<UserLogEntry> GetLog(){	
 		return this.logEntries;
 	}
 }

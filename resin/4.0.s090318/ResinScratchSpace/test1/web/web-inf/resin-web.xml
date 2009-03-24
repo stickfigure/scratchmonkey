@@ -1,17 +1,43 @@
-<web-app 	xmlns="http://caucho.com/ns/resin" 
-		 	xmlns:jms="urn:java:com.caucho.jms" 
-		 	xmlns:ejb="urn:java:com.caucho.ejb"
-			xmlns:util="urn:java:resinscratchspace.util"
-			xmlns:biz="urn:java:resinscratchspace.biz"
+<web-app 	xmlns="http://caucho.com/ns/resin"  		 xmlns:cfg="urn:java:com.caucho.config"
+		 	xmlns:jms="urn:java:com.caucho.jms" 		 xmlns:ejb="urn:java:com.caucho.ejb"
+			xmlns:util="urn:java:resinscratchspace.util" xmlns:biz="urn:java:resinscratchspace.biz"
+			xmlns:rssa="urn:java:resinscratchspace.annotations"
 			>
 
+  <!--
+  		CanDI Beans/EJBs -->
   <biz:SecurityManagerImpl/>
   <util:BootstrapperBean/>
   <util:EchoService/>
   <util:InitDatabaseService/>
+
+  <!--
+  			JMS			  -->
+  <jms:JmsConnectionFactory/>
+
+  <jms:MemoryQueue>
+    <Named>userUpdates</Named>
+    <rssa:UserUpdate/>
+<!--	<cfg:Name>userUpdates</cfg:Name>-->
+  </jms:MemoryQueue>
+
+  <jms:MemoryQueue>
+<!--  	<JndiName>jms/userEvents</JndiName>-->
+<!--  	<jms:name>userEvents</jms:name>-->
+    <Named>userEvents</Named>
+    <rssa:UserEvent/>
+<!--	<cfg:Name>userEvents</cfg:Name>-->
+  </jms:MemoryQueue>
+
+  <ejb-message-bean class="resinscratchspace.queues.UserUpdateListener">
+    <destination>#{userUpdates}</destination>
+  </ejb-message-bean>
+
+ <ejb-message-bean class="resinscratchspace.queues.UserEventListener">
+    <destination>#{userEvents}</destination>
+  </ejb-message-bean>
   
   <database jndi-name="jdbc/test">
-  	
   	<ping>true</ping>
     <ping-interval>0</ping-interval>
     <ping-query>select 1;</ping-query>
@@ -28,25 +54,10 @@
   			  validate-database-schema="true"
   			  create-database-schema="true"/>
   
-  <jms:JmsConnectionFactory/>
-
-  <jms:MemoryQueue>
-    <Named>userUpdates</Named>
-  </jms:MemoryQueue>
 
 <!--  <jms:MemoryQueue>-->
 <!--  	<JndiName>jms/userEvents</JndiName>-->
 <!--  	<jms:name>userEvents</jms:name>-->
 <!--    <Named>userEvents</Named>-->
 <!--  </jms:MemoryQueue>-->
-  
-  <ejb-message-bean class="resinscratchspace.queues.UserUpdateListener">
-    <destination>#{userUpdates}</destination>
-  </ejb-message-bean>
-
-<!-- <ejb-message-bean class="resinscratchspace.queues.UserEventListener">-->
-<!--    <destination>#{userEvents}</destination>-->
-<!--  </ejb-message-bean>-->
-
-
 </web-app>

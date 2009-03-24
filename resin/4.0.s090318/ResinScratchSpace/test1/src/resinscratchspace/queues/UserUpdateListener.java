@@ -1,5 +1,6 @@
 package resinscratchspace.queues;
 
+import java.util.concurrent.BlockingQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -11,6 +12,7 @@ import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
 import javax.persistence.EntityManager;
 
+import resinscratchspace.annotations.UserEvent;
 import resinscratchspace.entities.User;
 import resinscratchspace.entities.UserLogEntry;
 
@@ -18,12 +20,25 @@ import resinscratchspace.entities.UserLogEntry;
 public class UserUpdateListener implements MessageListener {
 	private static final Logger log = Logger.getLogger(UserUpdateListener.class.getName());
 	@Current EntityManager entMgr;
+
+	@SuppressWarnings("unchecked")
+	@UserEvent
+//	@Name("userEvents")
+	private BlockingQueue userEventQueue;	
+
 	  
+	@SuppressWarnings("unchecked")
 	public void onMessage(Message qMsg) {
 		try {
 			User u = (User)((ObjectMessage) qMsg).getObject();
 			UserLogEntry ule = new UserLogEntry(u, "Login: " + u.getLastLogin());
-			entMgr.persist(ule);
+			try {
+				this.userEventQueue.put(ule);
+			} catch (InterruptedException e) {
+				//eat it.
+				log.log(Level.SEVERE,e.getStackTrace().toString());
+			}
+//			entMgr.persist(ule);
 			entMgr.merge(u);
 			log.log(Level.INFO, "User updated: " + u.getFriendlyName() + "(" + u.getId()+ ")");
 		} catch (JMSException e) {

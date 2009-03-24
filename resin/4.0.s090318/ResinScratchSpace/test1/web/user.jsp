@@ -8,12 +8,11 @@
 				<a id="email" href="mailto://${actionBean.user.email}">${actionBean.user.email}</a>
 			</div>
 			<div><s:label for="fullName" >Name:</s:label>${actionBean.user.fullName}</div>
-			<div><s:label for="friendlyName" >Nick Name:</s:label>${actionBean.user.friendName}</div>
+			<div><s:label for="friendlyName" >Nick Name:</s:label>${actionBean.user.friendlyName}</div>
 			
 			<div> 
-<!--				<a href="/user/0/edit">Edit</a>-->
-				<s:link beanclass="${actionBean.clss}" event="edit">Edit
-					<s:param name="id" value="${actionBean.loginStatus.user.id}"/>
+				<s:link beanclass="${actionBean.class}" event="edit">Edit
+					<s:param name="id" value="${actionBean.id}"/>
 				</s:link> 
 			</div>			
 		</stripes:form>

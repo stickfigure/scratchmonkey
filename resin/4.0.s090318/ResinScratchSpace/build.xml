@@ -76,7 +76,7 @@
     </target>
 
 	
-	<target name="clean_deploy" description="Clean the deployed webapp, then deploys" depends="del_deploy, deploy">
+	<target name="clean_deploy" description="Clean the deployed webapp, then deploys" depends="clean, del_deploy, deploy">
 	</target>
 	
 	<target name="deploy" description="Deployes War" depends="prepare-war">		

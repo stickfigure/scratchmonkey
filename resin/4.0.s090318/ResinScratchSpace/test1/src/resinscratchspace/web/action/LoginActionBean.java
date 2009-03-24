@@ -2,7 +2,6 @@ package resinscratchspace.web.action;
 
 import java.util.concurrent.BlockingQueue;
 
-import javax.inject.Current;
 import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.Query;
@@ -13,6 +12,7 @@ import net.sourceforge.stripes.validation.LocalizableError;
 import net.sourceforge.stripes.validation.SimpleError;
 import net.sourceforge.stripes.validation.Validate;
 import net.sourceforge.stripes.validation.ValidationError;
+import resinscratchspace.annotations.UserUpdate;
 import resinscratchspace.entities.User;
 import resinscratchspace.web.AbstractActionBean;
 
@@ -21,9 +21,7 @@ public class LoginActionBean  extends AbstractActionBean {
 	private static final Log log = Log.getInstance(LoginActionBean.class);
 
 	@SuppressWarnings("unchecked")
-	//@Name("userUpdates")
-	@Current
-	//@Resource(mappedName="userUpdates")
+	@UserUpdate
 	private BlockingQueue userUpdateQueue;	
 
   	@Validate(required = true)

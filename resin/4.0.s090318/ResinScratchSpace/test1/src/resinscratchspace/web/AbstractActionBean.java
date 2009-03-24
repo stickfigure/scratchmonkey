@@ -25,10 +25,9 @@ public class AbstractActionBean implements ActionBean {
 
 	public void setContext(ActionBeanContext val) {
 		this.context = val;
+		preBind();
 	}
 	
-	public ActionBean getCurrentAction(){
-		return this;
-	}
-
+	protected void preBind(){}
+	public LoginStatus getLoginStatus(){return this.loginStatus;}
 }

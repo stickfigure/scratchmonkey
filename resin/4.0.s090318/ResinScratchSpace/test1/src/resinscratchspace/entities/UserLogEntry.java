@@ -1,7 +1,6 @@
 package resinscratchspace.entities;
 
 import java.io.Serializable;
-import java.util.logging.Logger;
 
 import javax.inject.Initializer;
 import javax.persistence.*;
@@ -10,17 +9,13 @@ import javax.persistence.*;
 @Entity
 @Table(name="UserLogEntries")
 public class UserLogEntry implements Serializable{
-
 	private static final long serialVersionUID = 1L;
-	private static final Logger log = Logger.getLogger(UserLogEntry.class.getName());
-
-	//private Logger log = Logger.getLogger(UserLogEntry.class.getName());	
 	
 	@GeneratedValue
 	@Id
 	protected long id;
 
-	@ManyToOne(optional=false)
+	@ManyToOne(optional=false, targetEntity=User.class)
 	//@OneToOne(mappedBy="userlogentry")\
 	//@JoinColumn(referencedColumnName="id",name="user_id")
 	protected User user;

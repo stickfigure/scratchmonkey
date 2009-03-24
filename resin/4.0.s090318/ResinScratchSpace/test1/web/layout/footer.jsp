@@ -3,6 +3,8 @@
 <s:link beanclass="resinscratchspace.web.action.LoginActionBean">Login</s:link>
 |
 <s:link beanclass="resinscratchspace.web.action.UsersActionBean">Users List</s:link>
+|
+<s:link beanclass="resinscratchspace.web.action.EchoActionBean" event="view">Echo Test</s:link>
 
 <c:if test="${loginStatus.loggedIn}">
 	|	

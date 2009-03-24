@@ -5,12 +5,10 @@
 			xmlns:biz="urn:java:resinscratchspace.biz"
 			>
 
-<!--  <ejb-stateless-bean class="resinscratchspace.biz.SecurityManagerImpl"/>-->
-  
   <biz:SecurityManagerImpl/>
   <util:BootstrapperBean/>
-  <util:TestService/>
-  <util:Test2Service/>
+  <util:EchoService/>
+  <util:InitDatabaseService/>
   
   <database jndi-name="jdbc/test">
   	
@@ -32,15 +30,15 @@
   
   <jms:JmsConnectionFactory/>
 
-  <jms:FileQueue>
+  <jms:MemoryQueue>
     <Named>userUpdates</Named>
-  </jms:FileQueue>
+  </jms:MemoryQueue>
 
-<!--  <jms:FileQueue>-->
+<!--  <jms:MemoryQueue>-->
 <!--  	<JndiName>jms/userEvents</JndiName>-->
 <!--  	<jms:name>userEvents</jms:name>-->
 <!--    <Named>userEvents</Named>-->
-<!--  </jms:FileQueue>-->
+<!--  </jms:MemoryQueue>-->
   
   <ejb-message-bean class="resinscratchspace.queues.UserUpdateListener">
     <destination>#{userUpdates}</destination>

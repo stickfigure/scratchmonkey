@@ -16,13 +16,11 @@ public class BootstrapperBean implements Bootstrapper {
 
 	@PostConstruct
 	public void init(){
-		System.out.println("Starting Bootstrapper Service!");
 		log.log(Level.INFO,"Starting Bootstrapper Service!");
 	}
 	
 	@PreDestroy
 	public void destroy(){
-		System.out.println("Stopping Bootstrapper Service!");
 		log.log(Level.INFO,"Stopping Bootstrapper Service!");
 	}
 }

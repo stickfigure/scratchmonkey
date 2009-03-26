@@ -3,10 +3,13 @@
 	<property file="build.properties" />
 
 	<property name="test1.war.name" value="test1.war"/>
-	<property name="build.dir" value="${basedir}/build/${test1.war.name}/" />
-	<property name="dist.dir" value="${basedir}/dist" />
-	<property name="resin.dir" value="/java/resin-4.0.s090318/" />
-	<property name="webapp.deploy.dir" value="${resin.dir}/webapps/"/>
+	<property name="test2.war.name" value="test2.war"/>
+	
+	
+	<property name="build.dir" location="${basedir}/build/" />
+	<property name="dist.dir" location="${basedir}/dist/" />
+	<property name="resin.dir" location="/java/resin-4.0.s090318/" />
+	<property name="webapp.deploy.dir" location="${resin.dir}/webapps/"/>
 	
 	<path id="build.class.path">
 		<fileset dir="${basedir}/lib" includes="**/*.jar" />
@@ -31,25 +34,25 @@
 	</target>
 
 	<target name="prepare-war">
-		<copy todir="${build.dir}/">
-			<fileset dir="${basedir}/test1/web/" includes="**/*"/>
+		<copy todir="${build.dir}/" preservelastmodified="true" >
+			<fileset dir="${basedir}/${warName}/web/" includes="**/*"/>
 		</copy>
 		
-		<copy todir="${build.dir}/WEB-INF/">
-			<fileset dir="${basedir}/test1/web/" includes="resin-web.xml"/>
+		<copy todir="${build.dir}/WEB-INF/" preservelastmodified="true" >
+			<fileset dir="${basedir}/${warName}/web/" includes="resin-web.xml"/>
 		</copy>
 
-		<copy todir="${build.dir}/WEB-INF/lib/">
+		<copy todir="${build.dir}/WEB-INF/lib/" preservelastmodified="true" > 
 			<fileset dir="${basedir}/lib/" includes="**/*.jar"/>
 		</copy>
 		
-		<copy todir="${build.dir}/WEB-INF/classes/">
-			<fileset dir="${basedir}/test1/src" includes="**/*"/>
+		<copy todir="${build.dir}/WEB-INF/classes/" preservelastmodified="true" >
+			<fileset dir="${basedir}/${warName}/src" includes="**/*"/>
 		</copy>
 		
-		<copy todir="${build.dir}/WEB-INF/classes/meta-inf/">
-			<fileset dir="${basedir}/meta/" includes="beans.xml"/>
-			<fileset dir="${basedir}/meta/" includes="persistence.xml"/>
+		<copy todir="${build.dir}/WEB-INF/classes/meta-inf/" preservelastmodified="true" >
+			<fileset dir="${basedir}/${warName}/" includes="beans.xml"/>
+			<fileset dir="${basedir}/${warName}/" includes="persistence.xml"/>
 		</copy>
 	</target>
 	
@@ -71,17 +74,28 @@
 	</target>
 
 	<target name="del_deploy" description="deleted the deployed webapps">
-		<delete dir="${webapp.deploy.dir}/${test1.war.name}/" includes="*"/>
-		<delete dir="${webapp.deploy.dir}/${test1.war.name}/" failonerror="false"/>
+		<delete dir="${webapp.deploy.dir}/test*/" includes="*"/>
+		<delete dir="${webapp.deploy.dir}/test*/" failonerror="false"/>
     </target>
 
 	
 	<target name="clean_deploy" description="Clean the deployed webapp, then deploys" depends="clean, del_deploy, deploy">
 	</target>
 	
-	<target name="deploy" description="Deployes War" depends="prepare-war">		
+	<target name="deploy" description="Deployes War" depends="">
+
+		<antcall target="prepare-war">
+			<param name="warName" value="test1" />
+			<param name="build.dir" value="${build.dir}/test1.war/"/>
+		</antcall>
+
+		<antcall target="prepare-war">
+			<param name="warName" value="test2"/>
+			<param name="build.dir" value="${build.dir}/test2.war/"/>
+		</antcall>
+		
 		<copy todir="${webapp.deploy.dir}/" overwrite="true" preservelastmodified="true" >
-			<fileset dir="${build.dir}/../" includes="**.war/**/*" excludes="/resinscratchspace" />
+			<fileset dir="${build.dir}/" includes="test*/**/*" excludes="/resinscratchspace" />
 		</copy>
 	</target>
 	

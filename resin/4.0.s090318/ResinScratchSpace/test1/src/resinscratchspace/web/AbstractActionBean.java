@@ -10,7 +10,7 @@ import net.sourceforge.stripes.action.ActionBeanContext;
 public class AbstractActionBean implements ActionBean {
 	protected ActionBeanContext context;
 	
-	@Current
+	@Current //@Name("test")
 	protected EntityManager em;
 	
 	@Current

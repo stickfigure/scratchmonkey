@@ -2,6 +2,8 @@ package resinscratchspace.web.action;
 
 import java.util.concurrent.BlockingQueue;
 
+import javax.inject.Current;
+
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.HandlesEvent;
@@ -18,17 +20,20 @@ import resinscratchspace.web.AbstractActionBean;
 public class UserActionBean extends AbstractActionBean {
 	private static final Log log = Log.getInstance(UserActionBean.class);
 
-	@SuppressWarnings("unchecked")
-//	@Name("userEvent")
 	@UserEvent
-	private BlockingQueue userEventQueue;	
+	@Current
+	private BlockingQueue<UserLogEntry> userEventQueue;	
 	
 	@Validate(required=true)
 	protected long id;
 
 	public void setId(long value) { 
-		this.id = value; 
+		this.id = value;
+		if(this.u==null || this.u.getId() != this.id) { 
+			this.u = this.em.find(User.class, this.id);
+		}
 	}
+	
 	public long getId(){return this.id;}
 	
 	@Validate(required=true)
@@ -50,7 +55,6 @@ public class UserActionBean extends AbstractActionBean {
 		return new ForwardResolution("/useredit.jsp");
 	}
 
-	@SuppressWarnings("unchecked")
 	@HandlesEvent("update")
 	public Resolution update(){
 		//Save changes.
@@ -69,11 +73,20 @@ public class UserActionBean extends AbstractActionBean {
 	
 	@Override
 	public void preBind() {
-		Object idObject = getContext().getRequest().getAttribute("id");
-		String id = idObject.toString();
-		try{
-			this.u = em.find(User.class, id);			
-		} catch (Exception e){}
+		log.debug("preBind Init");
+		Object idObject = getContext().getRequest().getParameter("id");
+		
+		
+		if(idObject != null){
+			log.debug("finding user, id=" + idObject);
+			String id = idObject.toString();
+			try{
+				this.u = em.find(User.class, id);			
+			} catch (Exception e){}
+		} else {
+			log.error("No id provided for preBind-ing of Entities[User]");
+		}
+		
 	}
 	
 	public User getUser(){

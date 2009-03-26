@@ -21,13 +21,10 @@ public class UserUpdateListener implements MessageListener {
 	private static final Logger log = Logger.getLogger(UserUpdateListener.class.getName());
 	@Current EntityManager entMgr;
 
-	@SuppressWarnings("unchecked")
 	@UserEvent
-//	@Name("userEvents")
-	private BlockingQueue userEventQueue;	
+	private BlockingQueue<UserLogEntry> userEventQueue;	
 
 	  
-	@SuppressWarnings("unchecked")
 	public void onMessage(Message qMsg) {
 		try {
 			User u = (User)((ObjectMessage) qMsg).getObject();

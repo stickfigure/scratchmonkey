@@ -26,15 +26,24 @@ import com.caucho.config.Service;
 public class InitDatabaseService {
 	private static final Logger log = Logger.getLogger(InitDatabaseService.class.getName());
 
-
+	
 	@Current private EntityManager em;
+	
+	
 	@Current private UserTransaction ut;
 	
-	@SuppressWarnings({ "unused", "unchecked" })
 	@PostConstruct
-	private void postConstruct()
+	protected void postConstruct()
 	{
 		log.log(Level.INFO,"Checking and adding test data.");
+		initUsers();
+	}
+	
+		
+	
+	@SuppressWarnings("unchecked")
+	private void initUsers(){
+		
 		Query q = em.createQuery("select u from User u");
 //		log.log(Level.INFO,"Got NamedQuery:AllUsers");
 		log.log(Level.INFO,"Got Query for User(s)");
@@ -45,9 +54,11 @@ public class InitDatabaseService {
 			log.log(Level.INFO,"Empty User table, filling with test records...");
 			try {
 				ut.begin();
+//				em.getTransaction().begin();
 				log.log(Level.INFO,"Transaction begun.");
 				em.persist(new User("scotthernandez@hotmail.com","test", "Scott Hernandez", "Scott"));
 				em.persist(new User("jeff@infohazard.org","test", "Jeff Schnitzer", "Jeff"));
+//				em.getTransaction().commit();
 				ut.commit();
 				log.log(Level.INFO,"Commited!");
 			} catch (NotSupportedException e) {
@@ -65,8 +76,9 @@ public class InitDatabaseService {
 			} catch (HeuristicRollbackException e) {
 				log.log(Level.SEVERE,e.getStackTrace().toString());
 			}
-		}
+		}		
 	}
+	
 	@SuppressWarnings("unused")
 	@PreDestroy
 	private void preDestroy()

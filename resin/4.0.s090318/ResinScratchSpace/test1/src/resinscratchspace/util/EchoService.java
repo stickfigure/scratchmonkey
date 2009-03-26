@@ -10,20 +10,21 @@ import com.caucho.config.Service;
 
 @Service
 public class EchoService {
-	private static final Logger log = Logger.getLogger(EchoService.class.getName());
+//	@New
+	private Logger log = Logger.getLogger(EchoService.class.getName());
 
 	@PostConstruct
 	public void start() {
-		log.log(Level.WARNING,"Starting EchoService Service!");
+		log.log(Level.FINER,"Starting EchoService Service!");
 	}
 
 	@PreDestroy
 	public void stop() {
-		log.log(Level.WARNING,"Starting EchoService Service!");
+		log.log(Level.FINER,"Stopping EchoService Service!");
 	}
 	
 	public String echo(String s){
-		log.log(Level.INFO,"Echoing: " + s);	
+		log.log(Level.FINER,"Echoing: " + s);	
 		return s;
 	}
 }

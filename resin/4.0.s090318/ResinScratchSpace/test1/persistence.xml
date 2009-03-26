@@ -5,7 +5,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
 	version="1.0">
 	
-	<persistence-unit name="ResinScratchSpace">
-		<jta-data-source>java:jdbc/test</jta-data-source>
+	<persistence-unit name="test">
+		<jta-data-source>java:app/jdbc/test</jta-data-source>
 	</persistence-unit>
 </persistence>

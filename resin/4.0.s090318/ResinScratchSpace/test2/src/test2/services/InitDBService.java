@@ -8,7 +8,6 @@ import javax.annotation.PostConstruct;
 import javax.inject.Current;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.transaction.*;
 
 import test2.entities.Category;
 
@@ -21,16 +20,16 @@ public class InitDBService {
 
 	@Current
 	private EntityManager em;
-
-	@Current
-	private UserTransaction ut;
+//
+//	@Current
+//	private UserTransaction ut;
 
 	@SuppressWarnings("unchecked")
 	@PostConstruct
 	protected void postConstruct() {
 		try {
-			ut.begin();
-			// em.getTransaction().begin();
+			//ut.begin();
+			em.getTransaction().begin();
 			Query q = em.createQuery("select c from Category c");
 			log.log(Level.INFO, "Got Query for Category(c)");
 
@@ -44,24 +43,24 @@ public class InitDBService {
 				em.persist(new Category("Electronics"));
 				em.persist(new Category("Toys"));
 				em.persist(new Category("Crackers"));
-				// em.getTransaction().commit();
-				ut.commit();
+				em.getTransaction().commit();
+//				ut.commit();
 				log.log(Level.INFO, "Commited!");
 			}
-		} catch (NotSupportedException e) {
-			log.log(Level.SEVERE, e.getStackTrace().toString());
-		} catch (SystemException e) {
-			log.log(Level.SEVERE, e.getStackTrace().toString());
+//		} catch (NotSupportedException e) {
+//			log.log(Level.SEVERE, e.getStackTrace().toString());
+//		} catch (SystemException e) {
+//			log.log(Level.SEVERE, e.getStackTrace().toString());
 		} catch (IllegalStateException e) {
 			log.log(Level.SEVERE, e.getStackTrace().toString());
 		} catch (SecurityException e) {
 			log.log(Level.SEVERE, e.getStackTrace().toString());
-		} catch (RollbackException e) {
-			log.log(Level.SEVERE, e.getStackTrace().toString());
-		} catch (HeuristicMixedException e) {
-			log.log(Level.SEVERE, e.getStackTrace().toString());
-		} catch (HeuristicRollbackException e) {
-			log.log(Level.SEVERE, e.getStackTrace().toString());
+//		} catch (RollbackException e) {
+//			log.log(Level.SEVERE, e.getStackTrace().toString());
+//		} catch (HeuristicMixedException e) {
+//			log.log(Level.SEVERE, e.getStackTrace().toString());
+//		} catch (HeuristicRollbackException e) {
+//			log.log(Level.SEVERE, e.getStackTrace().toString());
 		}
 	}
 }

@@ -7,10 +7,10 @@
 
 	<!--
   		CanDI Beans/EJBs -->
-	<biz:SecurityManagerImpl />
-	<util:BootstrapperBean />
-	<util:EchoService />
-	<util:InitDatabaseService />
+<!--	<biz:SecurityManagerImpl />-->
+<!--	<util:BootstrapperBean />-->
+<!--	<util:EchoService />-->
+<!--	<util:InitDatabaseService />-->
 	<!--  <util:LogProducer/>-->
 
 	<!--

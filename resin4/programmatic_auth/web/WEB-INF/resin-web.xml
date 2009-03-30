@@ -6,8 +6,9 @@
 			xmlns:test="urn:java:test"
 			>
 
-	<!-- CanDI Beans/EJBs -->
+	<!-- CanDI Beans/EJBs
 	<test:EchoService/>
+	 -->
 
 	<!-- Security -->
 	<sec:Allow url-pattern="/foo/*">

@@ -18,8 +18,7 @@
 	<property name="build.war.file" location="${build.dir}/${name}.war" />
 
 	<property name="javasrc.dir" location="src" />
-	<property name="meta.dir" location="meta" />
-	<property name="content.dir" location="web" />
+	<property name="web.dir" location="web" />
 	<property name="lib.dir" location="lib" />
 
 	<path id="master.classpath">
@@ -62,12 +61,12 @@
 	-->
 	
 	<target name="war" depends="classes">
-		<war destfile="${build.war.file}" webxml="${meta.dir}/web.xml">
-			<webinf dir="${meta.dir}">
+		<war destfile="${build.war.file}" webxml="${web.dir}/WEB-INF/web.xml">
+			<webinf dir="${web.dir}/WEB-INF">
 				<exclude name="web.xml" />
 			</webinf>
 			
-			<fileset dir="${content.dir}" />
+			<fileset dir="${web.dir}" />
 			
 			<classes dir="${build.classes.dir}" />
 

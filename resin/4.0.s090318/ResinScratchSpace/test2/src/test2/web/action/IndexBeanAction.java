@@ -5,14 +5,15 @@ import java.util.List;
 import javax.inject.Current;
 import javax.persistence.EntityManager;
 
+import net.sourceforge.stripes.action.*;
+import net.sourceforge.stripes.util.Log;
+import net.sourceforge.stripes.validation.Validate;
 import test2.entities.Category;
 
-import net.sourceforge.stripes.action.*;
-import net.sourceforge.stripes.validation.Validate;
-
-@UrlBinding("/{$event}")
+@UrlBinding("/")
 public class IndexBeanAction implements ActionBean{
 	ActionBeanContext ctx;
+	private static final Log log = Log.getInstance(IndexBeanAction.class);
 
 	@Current
 	EntityManager em;
@@ -26,14 +27,17 @@ public class IndexBeanAction implements ActionBean{
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Category> listCategories(){
+	public List<Category> getCategories(){
+		log.debug("returning categories");
 		return (List<Category>)em.createQuery("select c from Category c").getResultList();	
 	}
-	
+
 	@DefaultHandler
 	@Validate
 	public Resolution view(){
-		return new ForwardResolution("/index.jsp");
+		log.debug("running default view:");		
+		List<Category> cats = this.getCategories();
 		
+		return new ForwardResolution("/index.jsp");
 	}
 }

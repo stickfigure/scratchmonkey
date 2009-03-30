@@ -32,8 +32,7 @@
 		<!-- Use the CanDI enabled (JSR299) ActionResolver  -->
         <init-param>
             <param-name>ActionResolver.Class</param-name>
-<!--            <param-value>com.googlecode.condistripes.ConDIActionResolver</param-value>-->
-			<param-value>resinscratchspace.util.ScratchActionResolver</param-value>
+            <param-value>com.googlecode.condistripes.ConDIActionResolver</param-value>
         </init-param>
 
 

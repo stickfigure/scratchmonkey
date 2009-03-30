@@ -94,7 +94,7 @@
 			<param name="build.dir" value="${build.dir}/test2.war/"/>
 		</antcall>
 		
-		<copy todir="${webapp.deploy.dir}/" overwrite="true" preservelastmodified="true" >
+		<copy todir="${webapp.deploy.dir}/" preservelastmodified="true" >
 			<fileset dir="${build.dir}/" includes="test*/**/*" excludes="/resinscratchspace" />
 		</copy>
 	</target>

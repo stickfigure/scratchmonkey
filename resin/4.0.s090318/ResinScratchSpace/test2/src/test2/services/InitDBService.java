@@ -27,9 +27,11 @@ public class InitDBService {
 	@SuppressWarnings("unchecked")
 	@PostConstruct
 	protected void postConstruct() {
+		log.log(Level.INFO, "Starting InitDBService");
 		try {
 			//ut.begin();
-			em.getTransaction().begin();
+//			em.getTransaction().begin();
+			if(em == null) throw new RuntimeException("No EntityManager Injected");
 			Query q = em.createQuery("select c from Category c");
 			log.log(Level.INFO, "Got Query for Category(c)");
 
@@ -43,24 +45,25 @@ public class InitDBService {
 				em.persist(new Category("Electronics"));
 				em.persist(new Category("Toys"));
 				em.persist(new Category("Crackers"));
-				em.getTransaction().commit();
+//				em.getTransaction().commit();
 //				ut.commit();
 				log.log(Level.INFO, "Commited!");
 			}
 //		} catch (NotSupportedException e) {
-//			log.log(Level.SEVERE, e.getStackTrace().toString());
+//			log.log(Level.SEVERE,  "db init", e);
 //		} catch (SystemException e) {
-//			log.log(Level.SEVERE, e.getStackTrace().toString());
-		} catch (IllegalStateException e) {
-			log.log(Level.SEVERE, e.getStackTrace().toString());
-		} catch (SecurityException e) {
-			log.log(Level.SEVERE, e.getStackTrace().toString());
+//			log.log(Level.SEVERE,  "db init", e);
+//		} catch (IllegalStateException e) {
+//			log.log(Level.SEVERE, "db init", e);
+//		} catch (SecurityException e) {
+//			log.log(Level.SEVERE, "db init", e);
 //		} catch (RollbackException e) {
-//			log.log(Level.SEVERE, e.getStackTrace().toString());
+//			log.log(Level.SEVERE,  "db init", e);
 //		} catch (HeuristicMixedException e) {
-//			log.log(Level.SEVERE, e.getStackTrace().toString());
+//			log.log(Level.SEVERE,  "db init", e);
 //		} catch (HeuristicRollbackException e) {
-//			log.log(Level.SEVERE, e.getStackTrace().toString());
-		}
+//			log.log(Level.SEVERE,  "db init", e);
+//		}
+		}catch (Exception e){log.log(Level.SEVERE, "db init", e);}
 	}
 }

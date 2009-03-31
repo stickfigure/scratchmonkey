@@ -6,17 +6,14 @@
 			xmlns:test="urn:java:test"
 			>
 
-	<!-- CanDI Beans/EJBs
-	<test:EchoService/>
-	 -->
-
-	<!-- Security -->
+	<!-- Security
 	<sec:Allow url-pattern="/foo/*">
 		<sec:IfRole name="user"/>
 	</sec:Allow>
-  
-	<sec:BasicLogin/>
+	-->  
 	
+	<test:ExtraLogin/>
+
 	<sec:XmlAuthenticator password-digest="none">
 		<sec:user name="harry" password="potter" roles="user,gryffindor"/>
 		

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/stripes.jar" sourcepath="/stripes (trunk)"/>
+	<classpathentry kind="lib" path="lib/commons-logging.jar"/>
+	<classpathentry kind="lib" path="lib/ConDI-Stripes-0.1.jar"/>
+	<classpathentry kind="lib" path="lib/cos.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-1.2.15.jar"/>
+	<classpathentry kind="var" path="SCRATCHMONKEY_RESIN_HOME"/>
+	<classpathentry kind="var" path="SCRATCHMONKEY_RESIN_HOME/lib/activation.jar"/>
+	<classpathentry kind="var" path="SCRATCHMONKEY_RESIN_HOME/lib/javaee-16.jar"/>
+	<classpathentry kind="var" path="SCRATCHMONKEY_RESIN_HOME/lib/javamail-141.jar"/>
+	<classpathentry kind="var" path="SCRATCHMONKEY_RESIN_HOME/lib/jaxstream-15.jar"/>
+	<classpathentry kind="var" path="SCRATCHMONKEY_RESIN_HOME/lib/jsf-12.jar"/>
+	<classpathentry kind="var" path="SCRATCHMONKEY_RESIN_HOME/lib/osgi-14.jar"/>
+	<classpathentry kind="var" path="SCRATCHMONKEY_RESIN_HOME/lib/resin.jar"/>
+	<classpathentry kind="var" path="SCRATCHMONKEY_RESIN_HOME/lib/webutil.jar"/>
+	<classpathentry kind="output" path="build/eclipse/"/>
+</classpath>

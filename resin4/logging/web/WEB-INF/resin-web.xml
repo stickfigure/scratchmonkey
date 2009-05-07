@@ -1,0 +1,22 @@
+<web-app	xmlns="http://caucho.com/ns/resin"
+			xmlns:cfg="urn:java:com.caucho.config"
+			xmlns:jms="urn:java:com.caucho.jms"
+			xmlns:ejb="urn:java:com.caucho.ejb"
+			xmlns:sec="urn:java:com.caucho.security"
+			xmlns:test="urn:java:test"
+			>
+
+	<!-- Security
+	<sec:Allow url-pattern="/foo/*">
+		<sec:IfRole name="user"/>
+	</sec:Allow>
+	-->  
+	
+	<test:ExtraLogin/>
+
+	<sec:XmlAuthenticator password-digest="none">
+		<sec:user name="harry" password="potter" roles="user,gryffindor"/>
+		
+		<sec:user name="dmalfoy" password="pureblood" roles="user,slytherin"/>
+	</sec:XmlAuthenticator>
+</web-app>

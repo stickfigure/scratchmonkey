@@ -49,17 +49,6 @@
 		</javac>
 	</target>
 
-	<!--
-	<target name="ejb" depends="classes">
-		<jar jarfile="${build.ejb.file}">
-			<metainf dir="${meta.dir}">
-				<include name="persistence.xml" />
-			</metainf>
-			<fileset dir="${build.classes.dir}"/>
-		</jar>
-	</target>
-	-->
-	
 	<target name="war" depends="classes">
 		<war destfile="${build.war.file}" webxml="${web.dir}/WEB-INF/web.xml">
 			<webinf dir="${web.dir}/WEB-INF">
@@ -69,6 +58,10 @@
 			<fileset dir="${web.dir}" />
 			
 			<classes dir="${build.classes.dir}" />
+			
+			<classes dir="${javasrc.dir}">
+				<include name="META-INF/**" />
+			</classes>
 
 			<lib dir="${lib.dir}">
 				<exclude name="buildonly/**"/>

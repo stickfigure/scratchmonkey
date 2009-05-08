@@ -4,12 +4,9 @@
 			xmlns:jms="urn:java:com.caucho.jms"
 			xmlns:ejb="urn:java:com.caucho.ejb"
 			xmlns:sec="urn:java:com.caucho.security"
-			xmlns:test="urn:java:test"
+			xmlns:tesdt="urn:java:test"
 			xmlns:resin="http://caucho.com/ns/resin/core"
 			>
 
-	<log path="stdout:" >
-		<logger name="test" level="all" />
-	</log>
-
+	<logger name="test" level="all"/>
 </web-app>

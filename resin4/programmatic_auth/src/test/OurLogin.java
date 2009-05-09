@@ -12,8 +12,9 @@ import com.caucho.security.BasicPrincipal;
 import com.caucho.security.Credentials;
 import com.caucho.security.PasswordCredentials;
 
-public class ExtraLogin extends AbstractLogin {
-	private static final Logger log = Logger.getLogger(ExtraLogin.class.getName());
+public class OurLogin extends AbstractLogin
+{
+	private static final Logger log = Logger.getLogger(OurLogin.class.getName());
 
 	/**
 	 * Logs in the user/pass to the container.

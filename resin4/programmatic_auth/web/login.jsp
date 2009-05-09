@@ -1,9 +1,7 @@
 <%@ page import="test.*" %>
 <%@ page import="javax.inject.*" %>
 
-<%!
-	@Current ExtraLogin login;
-%>
+<%!@Current OurLogin login;%>
 
 <%
 	login.login("harry", "potter", request);

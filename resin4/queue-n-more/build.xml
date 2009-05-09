@@ -3,7 +3,7 @@
 	<property file="build.properties" />
 	
 	<property name="build.dir" location="${basedir}/build/" />
-	<property name="resin.dir" location="/src/caucho/resin/" />
+	<property name="resin.dir" location="/java/resin-4.0.0/" />
 	<property name="webapp.deploy.dir" location="${resin.dir}/webapps/"/>
 	
 	<target name="deploy-war-dir">

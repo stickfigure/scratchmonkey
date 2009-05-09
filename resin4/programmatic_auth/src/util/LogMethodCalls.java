@@ -3,7 +3,7 @@
  * $URL: https://subetha.googlecode.com/svn/branches/resin/rtest/src/org/subethamail/rtest/util/BeanMixin.java $
  */
 
-package test;
+package util;
 
 import java.util.logging.Logger;
 

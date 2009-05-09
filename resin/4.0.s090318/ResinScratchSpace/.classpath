@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="test1/src"/>
-	<classpathentry kind="src" path="test2/src"/>
+	<classpathentry kind="src" path="test2.war/classes"/>
+	<classpathentry kind="src" path="test1.war/classes"/>
+	<classpathentry kind="src" path="queueTest.war/classes"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/stripes.jar" sourcepath="/stripes (trunk)"/>
 	<classpathentry kind="lib" path="lib/commons-logging.jar"/>

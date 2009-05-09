@@ -21,8 +21,8 @@ public class Client
 	public static void main(String[] args) throws Exception
 	{
 		HessianProxyFactory fact = new HessianProxyFactory();
-		fact.setUser("bobdobbs");
-		fact.setPassword("password");
+		fact.setUser("harry");
+		fact.setPassword("potter");
 		
 		String url = "http://localhost:8080/ct/api/Echo";
 		

@@ -12,8 +12,18 @@
 	</sec:Allow>
 	-->  
 	
-	<test:OurLogin/>
+	<logger name="com.caucho" level="config" />
+	<logger name="com.caucho.security" level="finest" />
+	<logger name="test" level="finest" />
+
+	<sec:BasicLogin/>
+	
+	<sec:XmlAuthenticator password-digest="none">
+		<sec:user name="harry" password="potter" roles="user,gryffindor"/>
+		<sec:user name="dmalfoy" password="pureblood" roles="user,slytherin"/>
+	</sec:XmlAuthenticator>
 <!--
+	<test:OurLogin/>
 	<test:OurAuthenticator/>
 -->
 

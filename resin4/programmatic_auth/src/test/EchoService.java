@@ -9,7 +9,7 @@ public class EchoService implements Echo
 {
 	private static final Logger log = Logger.getLogger(EchoService.class.getName());
 
-	@RolesAllowed("special")
+	@RolesAllowed("user")
 	public String echo(String s)
 	{
 		log.log(Level.INFO,"Echoing: " + s);	

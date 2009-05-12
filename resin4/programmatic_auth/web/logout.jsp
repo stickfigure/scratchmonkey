@@ -1,21 +1,19 @@
 <%@ page import="test.*" %>
 <%@ page import="javax.inject.*" %>
-<%@ page import="java.security.Principal"%>
 
 <%!@Current OurLogin login;%>
 
 <%
 	login.logout(null, request, response);
-	Principal prince =  login.getUserPrincipal(request);
 %>
 
 <html>
 	<body>
 		<p>
-			I am <%= prince %>
+			I am <%= request.getUserPrincipal() %>
 		</p>
 		<p>
-			I am role "user":  <%= login.isUserInRole(prince, "user") %>
+			I am role "user":  <%= login.isUserInRole(request.getUserPrincipal(), "user") %>
 		</p>
 		<a href="index.jsp">Home</a>
 	</body>

@@ -7,14 +7,14 @@ import java.util.logging.Logger;
 import javax.inject.Current;
 import javax.servlet.http.HttpServletRequest;
 
-import com.caucho.security.AbstractLogin;
 import com.caucho.security.Authenticator;
+import com.caucho.security.BasicLogin;
 import com.caucho.security.Credentials;
 import com.caucho.security.MemorySingleSignon;
 import com.caucho.security.PasswordCredentials;
 import com.caucho.server.security.CachingPrincipal;
 
-public class OurLogin extends AbstractLogin
+public class OurLogin extends BasicLogin
 {
 	private static final Logger log = Logger.getLogger(OurLogin.class.getName());
 

@@ -4,15 +4,14 @@
 <%@ page import="com.caucho.security.Login" %>
 
 <%!@Current Login login;%>
-<% Principal prince =  login.getUserPrincipal(request);  %>
 
 <html>
 	<body>
 		<p>
-			I am <%= prince %>
+			I am <%= request.getUserPrincipal() %>
 		</p>
 		<p>
-			I am role "user":  <%= login.isUserInRole(prince, "user") %>
+			I am role "user":  <%= login.isUserInRole(request.getUserPrincipal(), "user") %>
 		</p>
 		
 		<p><a href="login.jsp">login</a> (sets Principal)</p>

@@ -8,7 +8,6 @@
 
 	<logger name="com.caucho" level="config" />
 	<logger name="com.caucho.security" level="finest" />
-	<logger name="com.caucho.hessian" level="finest" />
 	<logger name="test" level="finest" />
 
 <!--	<sec:Allow url-pattern="/foo/*">-->
@@ -21,11 +20,4 @@
 		<sec:user name="harry" password="potter" roles="user,gryffindor"/>
 		<sec:user name="dmalfoy" password="pureblood" roles="user,slytherin"/>
 	</sec:XmlAuthenticator>
-
-<!--	<test:OurLogin/>-->
-<!--	<test:OurAuthenticator/>-->
-
-	<servlet-mapping url-pattern="/api/Echo" servlet-class="test.EchoService">
-		<protocol uri="hessian:"/>
-	</servlet-mapping>
 </web-app>

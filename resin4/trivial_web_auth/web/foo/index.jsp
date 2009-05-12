@@ -1,8 +1,3 @@
-<%@ page import="test.*" %>
-
-<%
-	
-%>
 
 <html>
 	<body>

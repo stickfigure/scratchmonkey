@@ -5,17 +5,17 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
 	version="2.4">
 
-	<description>Basic test of Resin continer</description>
+	<description>Basic test of Resin container</description>
 	<display-name>resin test</display-name>
 
-<!--	<security-constraint>-->
-<!--		<web-resource-collection>-->
-<!--			<web-resource-name>API</web-resource-name>-->
-<!--			<url-pattern>/api/*</url-pattern>-->
-<!--		</web-resource-collection>-->
-<!--		<auth-constraint>-->
-<!--			<role-name>user</role-name>-->
-<!--		</auth-constraint>-->
-<!--	</security-constraint>-->
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Secured Stuff</web-resource-name>
+			<url-pattern>/foo/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>user</role-name>
+		</auth-constraint>
+	</security-constraint>
 
 </web-app>

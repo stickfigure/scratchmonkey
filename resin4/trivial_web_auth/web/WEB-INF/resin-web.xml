@@ -15,12 +15,12 @@
 <!--		<sec:IfRole name="user"/>-->
 <!--	</sec:Allow>-->
 	
-<!--	<sec:BasicLogin/>-->
+	<sec:BasicLogin/>
 
-<!--	<sec:XmlAuthenticator password-digest="none">-->
-<!--		<sec:user name="harry" password="potter" roles="user,gryffindor"/>-->
-<!--		<sec:user name="dmalfoy" password="pureblood" roles="user,slytherin"/>-->
-<!--	</sec:XmlAuthenticator>-->
+	<sec:XmlAuthenticator password-digest="none">
+		<sec:user name="harry" password="potter" roles="user,gryffindor"/>
+		<sec:user name="dmalfoy" password="pureblood" roles="user,slytherin"/>
+	</sec:XmlAuthenticator>
 
 <!--	<test:OurLogin/>-->
 <!--	<test:OurAuthenticator/>-->

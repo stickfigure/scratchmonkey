@@ -4,7 +4,6 @@ import java.security.Principal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.inject.Current;
 import javax.servlet.http.HttpServletRequest;
 
 import com.caucho.security.Authenticator;
@@ -18,12 +17,11 @@ public class OurLogin extends BasicLogin
 {
 	private static final Logger log = Logger.getLogger(OurLogin.class.getName());
 
-	@Current
-	MemorySingleSignon mss;
-	
 	public OurLogin()
 	{
-		super();
+		MemorySingleSignon mss;
+		mss = new MemorySingleSignon();
+		mss.init();
 		this._singleSignon = mss;
 	}
 

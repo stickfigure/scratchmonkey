@@ -19,8 +19,7 @@ public class OurLogin extends BasicLogin
 
 	public OurLogin()
 	{
-		MemorySingleSignon mss;
-		mss = new MemorySingleSignon();
+		MemorySingleSignon mss = new MemorySingleSignon();
 		mss.init();
 		this._singleSignon = mss;
 	}

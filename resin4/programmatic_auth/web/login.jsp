@@ -1,19 +1,25 @@
 <%@ page import="test.*" %>
 <%@ page import="javax.inject.*" %>
+<%@ page import="java.security.Principal" %>
+<%@ page import="com.caucho.security.Login" %>
 
-<%!@Current OurLogin login;%>
+
+
+<%!@Current Login login;%>
 
 <%
-	login.login("harry", "potter", request);
+	((OurLogin)login).login("harry", "potter", request);
+	Principal prince = request.getUserPrincipal();
 %>
 
 <html>
 	<body>
 		<p>
-			I am <%= request.getUserPrincipal() %>
+			I am <%= prince %>
 		</p>
 		<p>
-			I am role "user":  <%= request.isUserInRole("user") %>
+			I am role "user":  <%= login.isUserInRole(prince, "user") %>
 		</p>
 	</body>
 </html>
+

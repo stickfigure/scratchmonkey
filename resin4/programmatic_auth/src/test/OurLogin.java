@@ -4,17 +4,28 @@ import java.security.Principal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.inject.Current;
 import javax.servlet.http.HttpServletRequest;
 
 import com.caucho.security.AbstractLogin;
 import com.caucho.security.Authenticator;
-import com.caucho.security.BasicPrincipal;
 import com.caucho.security.Credentials;
+import com.caucho.security.MemorySingleSignon;
 import com.caucho.security.PasswordCredentials;
+import com.caucho.server.security.CachingPrincipal;
 
 public class OurLogin extends AbstractLogin
 {
 	private static final Logger log = Logger.getLogger(OurLogin.class.getName());
+
+	@Current
+	MemorySingleSignon mss;
+	
+	public OurLogin()
+	{
+		super();
+		this._singleSignon = mss;
+	}
 
 	/**
 	 * Logs in the user/pass to the container.
@@ -25,7 +36,7 @@ public class OurLogin extends AbstractLogin
 	{
 		Authenticator auth = this.getAuthenticator();
 		
-	    BasicPrincipal user = new BasicPrincipal(name);
+	    CachingPrincipal user = new CachingPrincipal(name);
 
 	    Credentials credentials = new PasswordCredentials(pass);
 	    Principal principal = auth.authenticate(user, credentials, request);
@@ -39,6 +50,9 @@ public class OurLogin extends AbstractLogin
 	    }
 	    else
 	    {
+	    	user = (CachingPrincipal) principal;
+	    	user.addRole("user");
+	    	
 	    	this.saveUser(request, principal);
 	    	return true;
 	    }

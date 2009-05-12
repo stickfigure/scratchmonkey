@@ -84,7 +84,7 @@
 		<delete dir="${build.dir}" />
 	</target>
 	
-	<target name="runclient" depends="classes">
+	<target name="runclient" depends="classes, deploy">
 		<java classname="test.Client" classpathref="run.classpath"/>
 	</target>
 </project>

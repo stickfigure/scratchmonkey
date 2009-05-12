@@ -14,19 +14,23 @@ import javax.interceptor.Interceptors;
 
 import util.LogMethodCalls;
 
-import com.caucho.security.Authenticator;
+import com.caucho.security.AbstractAuthenticator;
 import com.caucho.security.Credentials;
+import com.caucho.server.security.CachingPrincipal;
 
 
 /**
  * @author Jeff Schnitzer
+ * @author Scott Hernandez
  */
 @Interceptors({LogMethodCalls.class})
-public class OurAuthenticator implements Authenticator
+public class OurAuthenticator extends AbstractAuthenticator
 {
 	/** */
+	private static final long serialVersionUID = 1L;
+	/** */
+	@SuppressWarnings("unused")
 	private static Logger log = Logger.getLogger(OurAuthenticator.class.getName());
-
 	/**
 	 * Authenticate the user by the password, returning null on failure.
 	 */
@@ -39,7 +43,9 @@ public class OurAuthenticator implements Authenticator
 	/** */
 	public boolean isUserInRole(Principal user, String role)
 	{
-		return true;
+		if(user instanceof CachingPrincipal) return ((CachingPrincipal)user).isInRole(role);
+		
+		return false;
 	}
 
 	/** */

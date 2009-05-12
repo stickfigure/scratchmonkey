@@ -5,20 +5,29 @@
 
 package test;
 
+import java.net.MalformedURLException;
 import java.util.logging.Logger;
+
+import javax.annotation.Named;
 
 import com.caucho.hessian.client.HessianProxyFactory;
 
 /**
  * @author Jeff Schnitzer
  */
+@Named("echo-client")
 public class Client
 {
 	/** */
 	@SuppressWarnings("unused")
 	private static Logger log = Logger.getLogger(Client.class.getName());
-
+	
 	public static void main(String[] args) throws Exception
+	{
+		(new Client()).echo("greetings, program");
+	}
+	
+	public String echo(String s) throws MalformedURLException
 	{
 		HessianProxyFactory fact = new HessianProxyFactory();
 		fact.setUser("harry");
@@ -28,6 +37,6 @@ public class Client
 		
 		Echo ech = (Echo)fact.create(Echo.class, url);
 		
-		ech.echo("greetings, program");
+		return ech.echo(s);
 	}
 }

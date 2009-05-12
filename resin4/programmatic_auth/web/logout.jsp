@@ -13,7 +13,7 @@
 			I am <%= request.getUserPrincipal() %>
 		</p>
 		<p>
-			I am role "user":  <%= login.isUserInRole(request.getUserPrincipal(), "user") %>
+			I am role "user":  <%= request.isUserInRole("user") %>
 		</p>
 		<a href="index.jsp">Home</a>
 	</body>

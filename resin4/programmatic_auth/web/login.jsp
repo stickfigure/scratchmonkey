@@ -9,16 +9,15 @@
 
 <%
 	((OurLogin)login).login("harry", "potter", request);
-	Principal prince = request.getUserPrincipal();
 %>
 
 <html>
 	<body>
 		<p>
-			I am <%= prince %>
+			I am <%= request.getUserPrincipal() %>
 		</p>
 		<p>
-			I am role "user":  <%= login.isUserInRole(prince, "user") %>
+			I am role "user":  <%= request.isUserInRole("user") %>
 		</p>
 	</body>
 </html>

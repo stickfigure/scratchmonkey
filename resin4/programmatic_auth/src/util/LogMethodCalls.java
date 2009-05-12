@@ -34,7 +34,10 @@ public class LogMethodCalls
 			else
 				needsComma = true;
 			
-			bld.append(param.toString());
+			if (param == null)
+				bld.append("null");
+			else
+				bld.append(param.toString());
 		}
 		
 		Logger log = Logger.getLogger(ctx.getTarget().getClass().getName());

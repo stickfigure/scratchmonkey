@@ -2,9 +2,12 @@
 <%@ page import="javax.inject.*" %>
 <%@ page import="java.security.Principal" %>
 <%@ page import="com.caucho.security.Login" %>
+<%@page import="com.caucho.security.BasicLogin"%>
 
 <%!@Current Login login;%>
 <% Principal prince =  login.getUserPrincipal(request);  %>
+
+
 
 <html>
 	<body>

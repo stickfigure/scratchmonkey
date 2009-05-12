@@ -10,10 +10,8 @@ import java.util.logging.Logger;
 
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
-import javax.interceptor.Interceptors;
 
-import util.LogMethodCalls;
-
+import com.caucho.config.Name;
 import com.caucho.security.AbstractAuthenticator;
 import com.caucho.security.Credentials;
 import com.caucho.server.security.CachingPrincipal;
@@ -23,7 +21,8 @@ import com.caucho.server.security.CachingPrincipal;
  * @author Jeff Schnitzer
  * @author Scott Hernandez
  */
-@Interceptors({LogMethodCalls.class})
+//@Interceptors({LogMethodCalls.class})
+@Name("testSecurity")
 public class OurAuthenticator extends AbstractAuthenticator
 {
 	/** */

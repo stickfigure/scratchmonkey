@@ -4,15 +4,19 @@ import java.security.Principal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.interceptor.Interceptors;
 import javax.servlet.http.HttpServletRequest;
+
+import util.LogMethodCalls;
 
 import com.caucho.security.Authenticator;
 import com.caucho.security.BasicLogin;
+import com.caucho.security.BasicPrincipal;
 import com.caucho.security.Credentials;
 import com.caucho.security.MemorySingleSignon;
 import com.caucho.security.PasswordCredentials;
-import com.caucho.server.security.CachingPrincipal;
 
+@Interceptors({LogMethodCalls.class})
 public class OurLogin extends BasicLogin
 {
 	private static final Logger log = Logger.getLogger(OurLogin.class.getName());
@@ -33,9 +37,9 @@ public class OurLogin extends BasicLogin
 	{
 		Authenticator auth = this.getAuthenticator();
 		
-	    CachingPrincipal user = new CachingPrincipal(name);
-
+	    BasicPrincipal user = new BasicPrincipal(name);
 	    Credentials credentials = new PasswordCredentials(pass);
+	    
 	    Principal principal = auth.authenticate(user, credentials, request);
 
 	    if (log.isLoggable(Level.FINE))
@@ -47,9 +51,6 @@ public class OurLogin extends BasicLogin
 	    }
 	    else
 	    {
-	    	user = (CachingPrincipal) principal;
-	    	user.addRole("user");
-	    	
 	    	this.saveUser(request, principal);
 	    	return true;
 	    }

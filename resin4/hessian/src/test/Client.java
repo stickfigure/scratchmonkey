@@ -5,7 +5,6 @@
 
 package test;
 
-import java.net.MalformedURLException;
 import java.util.logging.Logger;
 
 import javax.annotation.Named;
@@ -24,19 +23,20 @@ public class Client
 	
 	public static void main(String[] args) throws Exception
 	{
-		(new Client()).echo("greetings, program");
-	}
-	
-	public String echo(String s) throws MalformedURLException
-	{
 		HessianProxyFactory fact = new HessianProxyFactory();
-		fact.setUser("harry");
-		fact.setPassword("potter");
+//		fact.setUser("harry");
+//		fact.setPassword("potter");
 		
 		String url = "http://localhost:8080/ct/api/Echo";
 		
 		Echo ech = (Echo)fact.create(Echo.class, url);
 		
-		return ech.echo(s);
+		byte[] stuff = "abc".getBytes();
+//		String[] stuff = {"foo", "bar"};
+//		Payload[] stuff = {new Payload(), new Payload()};
+		
+		String got = ech.echo(stuff);
+		
+		System.out.println("Got back:  " + got);
 	}
 }

@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+
+<project name="ct" default="war" basedir=".">
+
+	<property name="name" value="${ant.project.name}" />
+	
+	<property file="build.properties" />
+
+	<property name="build.dir" location="build" />
+	
+	<property name="build.debug" value="on" />
+	<property name="build.deprecation" value="on" />
+
+	<property name="deploy.dir" location="${resin.dir}/webapps" />
+
+	<property name="build.classes.dir" location="${build.dir}/classes" />
+	
+	<property name="build.war.file" location="${build.dir}/${name}.war" />
+
+	<property name="javasrc.dir" location="src" />
+	<property name="web.dir" location="web" />
+	<property name="lib.dir" location="lib" />
+
+	<path id="master.classpath">
+		<pathelement path="${java.class.path}" />
+		
+		<fileset dir="${lib.dir}">
+			<include name="**/*.jar" />
+		</fileset>
+
+		<fileset dir="${resin.dir}/lib">
+			<include name="**/*.jar"/>
+		</fileset>
+	</path>
+	
+	<path id="run.classpath">
+		<path refid="master.classpath" />
+		<pathelement path="${build.classes.dir}" />
+	</path>
+
+ 	<target name="classes">
+		<mkdir dir="${build.classes.dir}" />
+ 		
+		<javac srcdir="${javasrc.dir}"
+				destdir="${build.classes.dir}"
+				debug="${build.debug}"
+				deprecation="${build.deprecation}">
+			<classpath refid="master.classpath" />
+		</javac>
+	</target>
+
+	<!--
+	<target name="ejb" depends="classes">
+		<jar jarfile="${build.ejb.file}">
+			<metainf dir="${meta.dir}">
+				<include name="persistence.xml" />
+			</metainf>
+			<fileset dir="${build.classes.dir}"/>
+		</jar>
+	</target>
+	-->
+	
+	<target name="war" depends="classes">
+		<war destfile="${build.war.file}" webxml="${web.dir}/WEB-INF/web.xml">
+			<webinf dir="${web.dir}/WEB-INF">
+				<exclude name="web.xml" />
+			</webinf>
+			
+			<fileset dir="${web.dir}" />
+			
+			<classes dir="${build.classes.dir}" />
+			
+			<classes dir="${javasrc.dir}">
+				<include name="META-INF/**" />
+			</classes>
+
+			<lib dir="${lib.dir}">
+				<exclude name="buildonly/**"/>
+			</lib>
+		</war>
+	</target>
+	
+	<target name="deploy" depends="war">
+		<copy file="${build.war.file}" todir="${deploy.dir}" />
+	</target>
+
+	<target name="clean">
+		<delete dir="${build.dir}" />
+	</target>
+	
+	<target name="runclient" depends="classes, deploy">
+		<java classname="test.Client" classpathref="run.classpath"/>
+	</target>
+</project>
+

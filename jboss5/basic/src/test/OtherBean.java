@@ -8,6 +8,7 @@ package test;
 import java.security.Principal;
 
 import javax.annotation.Resource;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 
@@ -19,7 +20,7 @@ import org.jboss.ejb3.annotation.SecurityDomain;
  */
 @Stateless
 @SecurityDomain("ct")
-//@RolesAllowed("siteAdmin")
+@RolesAllowed("siteAdmin")
 public class OtherBean implements Other, OtherRemote
 {
 	/** */

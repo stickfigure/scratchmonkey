@@ -6,6 +6,7 @@
 package test;
 
 import javax.annotation.Resource;
+import javax.annotation.security.RunAs;
 import javax.ejb.EJB;
 import javax.ejb.SessionContext;
 
@@ -18,7 +19,7 @@ import org.jboss.ejb3.annotation.Service;
  */
 @Service(objectName="test:service=Simple")
 @SecurityDomain("ct")
-//@RunAs("siteAdmin")
+@RunAs("siteAdmin")
 public class SimpleBean implements SimpleManagement
 {
 	/** */

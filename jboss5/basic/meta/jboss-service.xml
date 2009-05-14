@@ -29,10 +29,7 @@ DOCTYPE server
 									xmlns:ur="urn:jboss:user-roles:1.0">
 									
 									<ur:user name="jduke" password="theduke">
-										<ur:role name="ServletUserRole"></ur:role>
-										<ur:role name="AnotherUserRole"></ur:role>
-										<ur:role name="AuthorizedUser"></ur:role>
-										<ur:role name="callerJduke" group="CallerPrincipal"></ur:role>
+										<ur:role name="siteAdmin"></ur:role>
 									</ur:user>
 								</ur:users>
 							</jaas:module-option>

@@ -5,6 +5,7 @@
 
 package test;
 
+import java.net.URL;
 import java.util.logging.Logger;
 
 import javax.annotation.Named;
@@ -24,6 +25,7 @@ public class Client
 	public static void main(String[] args) throws Exception
 	{
 		HessianProxyFactory fact = new HessianProxyFactory();
+		fact.setOverloadEnabled(true);
 //		fact.setUser("harry");
 //		fact.setPassword("potter");
 		
@@ -31,10 +33,11 @@ public class Client
 		
 		Echo ech = (Echo)fact.create(Echo.class, url);
 		
-		byte[] stuff = "abc".getBytes();
+//		byte[] stuff = "abc".getBytes();
 //		String[] stuff = {"foo", "bar"};
 //		Payload[] stuff = {new Payload(), new Payload()};
-		
+		URL stuff = new URL("http://www.example.com/foo");
+
 		String got = ech.echo(stuff);
 		
 		System.out.println("Got back:  " + got);

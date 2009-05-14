@@ -1,5 +1,6 @@
 package test;
 
+import java.net.URL;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
@@ -44,4 +45,12 @@ public class EchoService implements Echo
 		
 		return result;
 	}
+
+	public String echo(URL stuff)
+	{
+		log.info("Echoing: " + stuff);
+		
+		return stuff.toString();
+	}
+
 }

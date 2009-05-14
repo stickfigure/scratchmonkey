@@ -36,6 +36,7 @@
 	<path id="run.classpath">
 		<path refid="master.classpath" />
 		<pathelement path="${build.classes.dir}" />
+		<pathelement path="${javasrc.dir}" />
 	</path>
 
  	<target name="classes">

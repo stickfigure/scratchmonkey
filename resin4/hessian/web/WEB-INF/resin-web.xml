@@ -8,8 +8,9 @@
 
 	<logger name="com.caucho" level="config" />
 	<logger name="com.caucho.security" level="finest" />
-<!--	<logger name="com.caucho.hessian" level="finest" />-->
+	<logger name="com.caucho.hessian" level="finest" />
 	<logger name="test" level="finest" />
+	<logger name="util" level="finest" />
 
 	<servlet-mapping url-pattern="/api/Echo" servlet-class="test.EchoService">
 		<protocol uri="hessian:"/>

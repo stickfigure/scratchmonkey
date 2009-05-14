@@ -69,6 +69,10 @@
 			<fileset dir="${web.dir}" />
 			
 			<classes dir="${build.classes.dir}" />
+			
+			<classes dir="${javasrc.dir}">
+				<include name="META-INF/**" />
+			</classes>
 
 			<lib dir="${lib.dir}">
 				<exclude name="buildonly/**"/>

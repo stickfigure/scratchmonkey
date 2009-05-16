@@ -1,0 +1,18 @@
+<web-app	xmlns="http://caucho.com/ns/resin"
+			xmlns:cfg="urn:java:com.caucho.config"
+			xmlns:jms="urn:java:com.caucho.jms"
+			xmlns:ejb="urn:java:com.caucho.ejb"
+			xmlns:sec="urn:java:com.caucho.security"
+			xmlns:test="urn:java:test"
+			>
+
+	<logger name="com.caucho" level="config" />
+	<logger name="com.caucho.security" level="finest" />
+	<logger name="com.caucho.hessian" level="finest" />
+	<logger name="test" level="finest" />
+	<logger name="util" level="finest" />
+
+	<servlet-mapping url-pattern="/api/Echo" servlet-class="test.EchoService">
+		<protocol uri="hessian:"/>
+	</servlet-mapping>
+</web-app>

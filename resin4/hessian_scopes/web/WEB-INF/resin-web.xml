@@ -15,4 +15,7 @@
 	<servlet-mapping url-pattern="/api/Echo" servlet-class="test.EchoService">
 		<protocol uri="hessian:"/>
 	</servlet-mapping>
+	<servlet-mapping url-pattern="/api/Deeper" servlet-class="test.DeeperService">
+		<protocol uri="hessian:"/>
+	</servlet-mapping>
 </web-app>

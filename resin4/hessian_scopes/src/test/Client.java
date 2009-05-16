@@ -5,7 +5,6 @@
 
 package test;
 
-import java.net.URL;
 import java.util.logging.Logger;
 
 import javax.annotation.Named;
@@ -32,13 +31,8 @@ public class Client
 		String url = "http://localhost:8080/ct/api/Echo";
 		
 		Echo ech = (Echo)fact.create(Echo.class, url);
-		
-//		byte[] stuff = "abc".getBytes();
-//		String[] stuff = {"foo", "bar"};
-//		Payload[] stuff = {new Payload(), new Payload()};
-		URL stuff = new URL("http://www.example.com/foo");
 
-		String got = ech.echo(stuff);
+		String got = ech.echo("foo");
 		
 		System.out.println("Got back:  " + got);
 	}

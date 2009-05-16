@@ -15,6 +15,12 @@
 	<servlet-mapping url-pattern="/api/Echo" servlet-class="test.EchoService">
 		<protocol uri="hessian:"/>
 	</servlet-mapping>
+	
+	<!--
+		If you remove this servlet mapping, the app scoped DeeperService works like you
+		would expect - there is only one instance.  With this enabled, "ant runclient"
+		shows that multiple DeeperService objects are created.
+	-->
 	<servlet-mapping url-pattern="/api/Deeper" servlet-class="test.DeeperService">
 		<protocol uri="hessian:"/>
 	</servlet-mapping>

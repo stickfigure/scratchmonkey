@@ -1,1 +1,9 @@
-<Beans xmlns="urn:java:ee"/>
+<Beans xmlns="urn:java:ee"
+		xmlns:test="urn:java:test"
+>
+
+	<test:BlahService>
+		<test:suffix>-better</test:suffix>
+	</test:BlahService>
+
+</Beans>

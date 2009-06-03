@@ -1,0 +1,8 @@
+<web-app	xmlns="http://caucho.com/ns/resin"
+			xmlns:cfg="urn:java:com.caucho.config"
+			xmlns:jms="urn:java:com.caucho.jms"
+			xmlns:ejb="urn:java:com.caucho.ejb"
+			xmlns:test="urn:java:test"
+			>
+
+</web-app>

@@ -18,8 +18,7 @@
 	<property name="build.war.file" location="${build.dir}/${name}.war" />
 
 	<property name="javasrc.dir" location="src" />
-	<property name="meta.dir" location="meta" />
-	<property name="content.dir" location="web" />
+	<property name="web.dir" location="web" />
 	<property name="lib.dir" location="lib" />
 
 	<path id="master.classpath">
@@ -37,6 +36,7 @@
 	<path id="run.classpath">
 		<path refid="master.classpath" />
 		<pathelement path="${build.classes.dir}" />
+		<pathelement path="${javasrc.dir}" />
 	</path>
 
  	<target name="classes">
@@ -50,26 +50,19 @@
 		</javac>
 	</target>
 
-	<!--
-	<target name="ejb" depends="classes">
-		<jar jarfile="${build.ejb.file}">
-			<metainf dir="${meta.dir}">
-				<include name="persistence.xml" />
-			</metainf>
-			<fileset dir="${build.classes.dir}"/>
-		</jar>
-	</target>
-	-->
-	
 	<target name="war" depends="classes">
-		<war destfile="${build.war.file}" webxml="${meta.dir}/web.xml">
-			<webinf dir="${meta.dir}">
+		<war destfile="${build.war.file}" webxml="${web.dir}/WEB-INF/web.xml">
+			<webinf dir="${web.dir}/WEB-INF">
 				<exclude name="web.xml" />
 			</webinf>
 			
-			<fileset dir="${content.dir}" />
+			<fileset dir="${web.dir}" />
 			
 			<classes dir="${build.classes.dir}" />
+			
+			<classes dir="${javasrc.dir}">
+				<include name="META-INF/**" />
+			</classes>
 
 			<lib dir="${lib.dir}">
 				<exclude name="buildonly/**"/>
@@ -85,7 +78,7 @@
 		<delete dir="${build.dir}" />
 	</target>
 	
-	<target name="runclient" depends="classes">
+	<target name="runclient" depends="classes, deploy">
 		<java classname="test.Client" classpathref="run.classpath"/>
 	</target>
 </project>

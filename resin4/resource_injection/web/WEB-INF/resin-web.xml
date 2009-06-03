@@ -5,4 +5,8 @@
 			xmlns:test="urn:java:test"
 			>
 
+	<servlet-mapping url-pattern="/api/Echo" servlet-class="test.EchoService">
+		<protocol uri="hessian:"/>
+	</servlet-mapping>
+	
 </web-app>

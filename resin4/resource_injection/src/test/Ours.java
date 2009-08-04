@@ -13,24 +13,14 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import javax.inject.BindingType;
+import javax.enterprise.inject.BindingType;
 
 /**
- * Binding Type (annotation) for our mail session.
- * 
- * This binding type is attached to the producer
- * of the session, and the injection point it is used.
- * 
- * TODO: Put this back in place once the bug is fixed in 
- * resin.
- * 
- * 
- * @author Scott Hernandez
- *
+ * A local binding type.
  */
 
 @BindingType
 @Target({FIELD,METHOD,PARAMETER})
 @Retention(RUNTIME)
-public @interface OutboundMTA
+public @interface Ours
 {}

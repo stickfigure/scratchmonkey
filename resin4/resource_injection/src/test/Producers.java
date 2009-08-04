@@ -1,8 +1,10 @@
 package test;
 
-import javax.context.ApplicationScoped;
-import javax.inject.Produces;
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Current;
+import javax.enterprise.inject.Produces;
 import javax.mail.Session;
+import javax.persistence.EntityManager;
 
 import com.caucho.config.Name;
 
@@ -19,9 +21,15 @@ public class Producers
 	@Name("outbound")
 	private Session mailSession;
 	
-	@Produces @OutboundMTA
+	@Produces @Ours
 	public Session getMailSession()
 	{
 		return this.mailSession;
+	}
+
+	@Produces @Ours 
+	public static OurEntityManager getEntityManager(@Current EntityManager base)
+	{
+		return new OurEntityManager(base);
 	}
 }

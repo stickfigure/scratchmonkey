@@ -315,7 +315,24 @@ public class ResteasyFilter implements Filter
 					"'. Using default value of " + includeBufferSize + ".", e);
 		}
 
-		this.resteasyServlet = new HttpServletDispatcher();
+		// Allow us to override the specific class for the servlet
+		String servletClassName = (String)config.getInitParameter("resteasy.servlet.class");
+		if (servletClassName == null)
+		{
+			this.resteasyServlet = new HttpServletDispatcher();
+		}
+		else
+		{
+			try
+			{
+				Class<? extends HttpServletDispatcher> servletClass =
+					Class.forName(servletClassName).asSubclass(HttpServletDispatcher.class);
+				
+				this.resteasyServlet = servletClass.newInstance();
+			}
+			catch (Exception ex) { throw new ServletException(ex); }
+		}
+		
 		this.resteasyServlet.init(new ServletConfig() {
 			public String getInitParameter(String name)
 			{

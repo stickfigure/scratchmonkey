@@ -2,7 +2,7 @@ package test;
 
 import java.util.logging.Logger;
 
-import javax.enterprise.inject.Named;
+import javax.annotation.Named;
 
 @Named("echoer")
 public class EchoService implements Echo

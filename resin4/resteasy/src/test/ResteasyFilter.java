@@ -1,4 +1,4 @@
-/* Copyright 2008 Ben Gunter
+/*
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -82,6 +82,9 @@ import org.slf4j.LoggerFactory;
  *      &lt;dispatcher&gt;INCLUDE&lt;/dispatcher&gt;
  *  &lt;/filter-mapping&gt;
  * </pre>
+ * 
+ * <p>The original code is here:
+ * http://stripes.svn.sourceforge.net/svnroot/stripes/tags/1.5.1/stripes/src/net/sourceforge/stripes/controller/DynamicMappingFilter.java</p>
  * 
  * @author Ben Gunter
  * @author Jeff Schnitzer

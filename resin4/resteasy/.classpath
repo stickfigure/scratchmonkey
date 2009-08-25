@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="attempts"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="var" path="SCRATCHMONKEY_RESIN_HOME"/>
 	<classpathentry kind="var" path="SCRATCHMONKEY_RESIN_HOME/lib/activation.jar"/>
@@ -9,6 +10,7 @@
 	<classpathentry kind="var" path="SCRATCHMONKEY_RESIN_HOME/lib/resin.jar"/>
 	<classpathentry kind="lib" path="lib/resteasy-jaxrs-1.1.GA.jar" sourcepath="/resteasy-jaxrs/src/main/java"/>
 	<classpathentry kind="lib" path="lib/slf4j-api-1.5.8.jar"/>
-	<classpathentry kind="lib" path="lib/jaxrs-api-1.1.GA.jar"/>
+	<classpathentry kind="lib" path="lib/jaxrs-api-1.1.GA.jar" sourcepath="/jaxrs-api/src/main/java"/>
+	<classpathentry kind="lib" path="lib/htmleasy-1.0-SNAPSHOT.jar"/>
 	<classpathentry kind="output" path="build/eclipse/"/>
 </classpath>

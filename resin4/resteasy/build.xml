@@ -81,5 +81,9 @@
 	<target name="runclient" depends="classes, deploy">
 		<java classname="test.Client" classpathref="run.classpath"/>
 	</target>
+
+	<target name="update-htmleasy" depends="">
+		<copy file="${m2.dir}/com/googlecode/htmleasy/htmleasy/1.0-SNAPSHOT/htmleasy-1.0-SNAPSHOT.jar" todir="${lib.dir}" />
+	</target>
 </project>
 

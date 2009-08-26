@@ -14,14 +14,9 @@
 		<param-value>true</param-value>
 	</context-param>
 
-	 <listener>
+	<listener>
 		<listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>
 	</listener>
-	<!--
-	<listener>
-		<listener-class>test.CanDIResteasyBootstrapServletContextListener</listener-class>
-	</listener>
-	-->
 
 	<!--
 	<servlet>
@@ -37,7 +32,7 @@
 	
 	<filter>
 		<filter-name>ResteasyFilter</filter-name>
-		<filter-class>test.ResteasyFilter</filter-class>
+		<filter-class>com.googlecode.htmleasy.ResteasyFilter</filter-class>
  	</filter>
 	
 	<filter-mapping>

@@ -58,7 +58,7 @@ public class Person
 	}
 
 	@GET @Path("/{id}/edit")
-	@ViewWith("/person_edit.jsp")
+	@ViewWith(ifClass=Object.class, value="/person_edit.jsp")
 	public PersonData editPerson(@PathParam("id") Long id)
 	{
 		return this.getPerson(id);

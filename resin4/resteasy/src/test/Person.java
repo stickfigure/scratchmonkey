@@ -14,6 +14,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.googlecode.htmleasy.RedirectException;
+import com.googlecode.htmleasy.View;
+import com.googlecode.htmleasy.ViewException;
 import com.googlecode.htmleasy.ViewWith;
 
 /**
@@ -81,5 +83,14 @@ public class Person
 			
 			return data;
 		}
+	}
+	
+	/** */
+	@GET @Path("/hello")
+	public void hello()
+	{
+		Hello.Stuff stuff = new Hello().getStuff();
+		
+		throw new ViewException(new View("/stuff.jsp", stuff));
 	}
 }

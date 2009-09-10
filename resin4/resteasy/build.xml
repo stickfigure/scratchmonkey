@@ -83,7 +83,7 @@
 	</target>
 
 	<target name="update-htmleasy" depends="">
-		<copy file="${m2.dir}/com/googlecode/htmleasy/htmleasy/1.0-SNAPSHOT/htmleasy-1.0-SNAPSHOT.jar" todir="${lib.dir}" />
+		<copy file="${m2.dir}/com/googlecode/htmleasy/htmleasy/0.7-SNAPSHOT/htmleasy-0.7-SNAPSHOT.jar" todir="${lib.dir}" />
 	</target>
 </project>
 

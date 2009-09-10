@@ -11,6 +11,6 @@
 	<classpathentry kind="lib" path="lib/resteasy-jaxrs-1.1.GA.jar" sourcepath="/resteasy-jaxrs/src/main/java"/>
 	<classpathentry kind="lib" path="lib/slf4j-api-1.5.8.jar"/>
 	<classpathentry kind="lib" path="lib/jaxrs-api-1.1.GA.jar" sourcepath="/jaxrs-api/src/main/java"/>
-	<classpathentry kind="lib" path="lib/htmleasy-1.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="lib/htmleasy-0.7-SNAPSHOT.jar"/>
 	<classpathentry kind="output" path="build/eclipse/"/>
 </classpath>

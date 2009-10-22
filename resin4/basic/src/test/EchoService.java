@@ -3,7 +3,9 @@ package test;
 import java.util.logging.Logger;
 
 import javax.annotation.Named;
+import javax.context.ApplicationScoped;
 
+@ApplicationScoped
 @Named("echoer")
 public class EchoService implements Echo
 {

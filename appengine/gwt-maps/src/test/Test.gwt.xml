@@ -2,6 +2,7 @@
 <module rename-to='test'>
   <!-- Inherit the core Web Toolkit stuff.                        -->
   <inherits name='com.google.gwt.user.User'/>
+  <inherits name="com.google.gwt.maps.GoogleMaps" />
 
   <!-- Inherit the default GWT style sheet.  You can change       -->
   <!-- the theme of your GWT application by uncommenting          -->
@@ -18,4 +19,5 @@
   <!-- Specify the paths for translatable code                    -->
   <source path='client'/>
 
+  <script src="http://maps.google.com/maps?gwt=1&amp;file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAAU6_XeZuqqdB9BWs-NMMy5xT2yXp_ZAY8_ufC3CFXhHIE1NvwkxRL7pAe9q9fMDISPnRvvcIpgg5GBQ" />		
 </module>

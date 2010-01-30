@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<!--
+	Random tools
+-->
+
+<project name="test" default="" basedir=".">
+
+	<property name="name" value="${ant.project.name}" />
+	
+	<property file="user.properties" />
+	<property file="${user.home}/build.properties" />
+	<property file="build.properties" />
+
+	<target name="update-objectify" depends="">
+		<copy file="../../../objectify/target/objectify-223.jar" todir="war/WEB-INF/lib" />
+	</target>
+</project>

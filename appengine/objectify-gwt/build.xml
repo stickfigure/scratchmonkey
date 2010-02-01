@@ -13,6 +13,10 @@
 	<property file="build.properties" />
 
 	<target name="update-objectify" depends="">
-		<copy file="../../../objectify/target/objectify-223.jar" todir="war/WEB-INF/lib" />
+		<copy todir="war/WEB-INF/lib">
+			<fileset dir="../../../objectify/target">
+				<include name="objectify-*.jar" />
+			</fileset>
+		</copy>
 	</target>
 </project>

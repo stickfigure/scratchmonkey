@@ -5,6 +5,7 @@ import com.google.gwt.maps.client.MapWidget;
 import com.google.gwt.maps.client.geom.LatLng;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.SplitLayoutPanel;
+import com.googlecode.objectify.OKey;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
@@ -29,5 +30,12 @@ public class MyEntryPoint implements EntryPoint
 		sl.forceLayout();
 		
 		map.checkResize();
+		
+		OKey<MapWidget> foo = null;
+		
+		if (foo == null)
+		{
+			map.checkResize();
+		}
 	}
 }

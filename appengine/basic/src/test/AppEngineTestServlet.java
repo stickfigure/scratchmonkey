@@ -12,20 +12,25 @@ public class AppEngineTestServlet extends HttpServlet
 {
 	/** */
 	private static final Logger log = Logger.getLogger(AppEngineTestServlet.class.getName());
-	
+
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException
 	{
 		resp.setContentType("text/plain");
 		
 		log.info("Executing doGet()");
 		
-
-//		String url = "http://voodoodyne.appspot.com/hello";
-
-//		HessianProxyFactory factory = new HessianProxyFactory();
-//		factory.setHessian2Request(true);
-//		Hello hell = (Hello)factory.create(Hello.class, url);
-
-//		resp.getWriter().println("hello(): " + hell.hello("Jeff2"));
+		try
+		{
+			this.runTest();
+		}
+		catch (Exception ex)
+		{
+			throw new IOException(ex);
+		}
+	}
+	
+	public void runTest() throws Exception
+	{
+		
 	}
 }

@@ -30,13 +30,16 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 
 	<servlet>
 		<servlet-name>AppEngineTest</servlet-name>
-		<servlet-class>test.AppEngineTestServlet</servlet-class>
+		<servlet-class>test.CDIProxyServlet</servlet-class>
+		<init-param>
+			<param-name>realServletClass</param-name>
+			<param-value>test.AppEngineTestServlet</param-value>
+		</init-param>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>AppEngineTest</servlet-name>
 		<url-pattern>/appenginetest</url-pattern>
 	</servlet-mapping>
-
 	<servlet>
 		<servlet-name>Resteasy</servlet-name>
 		<servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>

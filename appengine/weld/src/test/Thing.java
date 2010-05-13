@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 @ApplicationScoped
 public class Thing
 {
-	public int times = 0;
+	protected int times = 0;
 	
 	/** */
 	private final static Logger log = LoggerFactory.getLogger(Thing.class);

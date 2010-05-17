@@ -30,7 +30,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-class>test.CDIProxyServlet</servlet-class>
 		<init-param>
 			<param-name>realServletClass</param-name>
-			<param-value>test.AppEngineTestServlet</param-value>
+			<param-value>unsuck.cdi.AppEngineTestServlet</param-value>
 		</init-param>
 	</servlet>
 	<servlet-mapping>

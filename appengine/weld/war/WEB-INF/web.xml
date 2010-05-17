@@ -15,12 +15,9 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	</context-param>
 	<context-param>
 		<param-name>resteasy.injector.factory</param-name>
-		<param-value>test.ServletCdiInjectorFactory</param-value>
+		<param-value>org.jboss.resteasy.cdi.CdiInjectorFactory</param-value>
 	</context-param>
 	
-	<listener>
-		<listener-class>test.ServletCdiInjectorFactory$Listener</listener-class>
-	</listener>
 	<listener>
 		<listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
 	</listener>

@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.logging.Logger;
 
+import javax.enterprise.context.spi.CreationalContext;
 import javax.enterprise.inject.spi.Bean;
 import javax.enterprise.inject.spi.BeanManager;
+import javax.enterprise.inject.spi.InjectionTarget;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -48,15 +50,25 @@ public class CDIProxyServlet extends HttpServlet
 		{
 			Class<?> clazz = Class.forName(className);
 			Iterator<Bean<?>> it = mgr.getBeans(clazz).iterator();
-			if (!it.hasNext())
-				throw new ServletException("No managed beans for " + clazz);
-			
-			Bean servletBean = it.next();
 			
 			if (it.hasNext())
-				throw new ServletException("Too many managed beans for " + clazz);
-			
-			this.actual = (HttpServlet)servletBean.create(mgr.createCreationalContext(servletBean));
+			{
+				Bean<?> servletBean = it.next();
+				
+				if (it.hasNext())
+					throw new ServletException("Too many managed beans for " + clazz);
+				
+				this.actual = (HttpServlet)servletBean.create((CreationalContext)mgr.createCreationalContext(servletBean));
+			}
+			else
+			{
+				InjectionTarget targ = mgr.createInjectionTarget(mgr.createAnnotatedType(clazz));
+				CreationalContext cc = mgr.createCreationalContext(null);
+				this.actual = (HttpServlet)targ.produce(cc);
+				targ.inject(this.actual, cc);
+				
+				log.fine("Injected " + this.actual);
+			}
 		}
 		catch (ClassNotFoundException e)
 		{

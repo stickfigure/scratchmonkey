@@ -9,7 +9,7 @@
 	<property file="build.properties" />
 
 	<target name="update-unsuck" depends="">
-		<copy file="../../unsuck/target/unsuck.jar" todir="war/WEB-INF/lib" />
+		<copy file="../../../unsuck/target/unsuck.jar" todir="war/WEB-INF/lib" />
 	</target>
 
 </project>

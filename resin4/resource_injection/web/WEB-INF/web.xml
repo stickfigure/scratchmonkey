@@ -7,16 +7,5 @@
 		version="2.4">
 
 	<description>Basic test of Resin container</description>
-	<display-name>resin test</display-name><!--
-	
-	<filter>
-		<filter-name>OurFilter</filter-name>
-		<filter-class>test.OurFilter</filter-class>
-	</filter>
-	
-	<filter-mapping>
-		<filter-name>OurFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-	
---></web-app>
+	<display-name>resin test</display-name>
+</web-app>

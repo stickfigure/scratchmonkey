@@ -5,6 +5,7 @@
 			xmlns:test="urn:java:test"
 			>
 
+<!--
 	<servlet-mapping url-pattern="/api/Echo" servlet-class="test.EchoService">
 		<protocol uri="hessian:"/>
 	</servlet-mapping>
@@ -21,4 +22,5 @@
 		<smtp-host>localhost</smtp-host>
 		<smtp-port>25</smtp-port>
 	</mail>
+ -->	
 </web-app>

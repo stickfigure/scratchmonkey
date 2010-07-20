@@ -7,7 +7,7 @@ package test;
 
 import java.util.logging.Logger;
 
-import javax.enterprise.inject.Named;
+import javax.inject.Named;
 
 import com.caucho.hessian.client.HessianProxyFactory;
 

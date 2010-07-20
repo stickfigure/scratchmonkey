@@ -5,22 +5,11 @@
 			xmlns:test="urn:java:test"
 			>
 
-<!--
-	<servlet-mapping url-pattern="/api/Echo" servlet-class="test.EchoService">
-		<protocol uri="hessian:"/>
-	</servlet-mapping>
-
-	<database jndi-name="jdbc/ct">
-		<driver type="org.postgresql.Driver">
-			<url>jdbc:postgresql://localhost/simi</url>
-			<user>simi</user>
-			<password>simi</password>
-		</driver>
-	</database>
-
-	<mail name="outbound">
-		<smtp-host>localhost</smtp-host>
-		<smtp-port>25</smtp-port>
-	</mail>
- -->	
+	<jms:FileQueue>
+		<ee:Named>delivery</ee:Named>
+	</jms:FileQueue>
+	
+	<ejb-message-bean class="test.DeliveryListener">
+		<destination>#{delivery}</destination>
+	</ejb-message-bean>
 </web-app>

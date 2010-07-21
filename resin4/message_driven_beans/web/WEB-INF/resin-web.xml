@@ -38,7 +38,9 @@
 		<cfg:destination>#{delivery}</cfg:destination>
 	</cfg:MessageBeanConfig>
 	-->
-		
+
+	<jms:JmsConnectionFactory/>
+			
 	<jms:MemoryQueue>
 		<ee:Named>delivery</ee:Named>
 	</jms:MemoryQueue>

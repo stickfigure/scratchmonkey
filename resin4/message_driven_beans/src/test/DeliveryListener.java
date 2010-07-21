@@ -5,15 +5,14 @@
 
 package test;
 
+import java.util.logging.Logger;
+
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
-import javax.jms.ObjectMessage;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import javax.jms.TextMessage;
 
 /**
  * Process a queue message
@@ -26,7 +25,7 @@ import org.slf4j.LoggerFactory;
 public class DeliveryListener implements MessageListener
 {
 	/** */
-	private final static Logger log = LoggerFactory.getLogger(DeliveryListener.class);
+	private static final Logger log = Logger.getLogger(DeliveryListener.class.getName());
 
 	/**
 	 */
@@ -34,14 +33,12 @@ public class DeliveryListener implements MessageListener
 	{
 		try
 		{
-			String item = (String)((ObjectMessage) qMsg).getObject();
-			log.warn("Processed message: " + item);
+			String item = (String)((TextMessage) qMsg).getText();
+			log.warning("Processed message: " + item);
 		}
 		catch (JMSException ex)
 		{
-			if (log.isErrorEnabled())
-				log.error("Error getting data out of message.", ex);
-			
+			log.severe("Error getting data out of message." + ex);
 			throw new RuntimeException(ex);
 		}
 	}

@@ -5,22 +5,20 @@
 			xmlns:test="urn:java:test"
 			>
 
+	<database jndi-name="jdbc/subetha">
+		<driver type="com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource">
+			<url>jdbc:mysql://192.168.121.128:3306/ct</url>
+			<user>root</user>
+			<password>asdfasdf</password>
+		</driver>
+	</database>	
 <!--
-	<servlet-mapping url-pattern="/api/Echo" servlet-class="test.EchoService">
-		<protocol uri="hessian:"/>
-	</servlet-mapping>
-
 	<database jndi-name="jdbc/ct">
 		<driver type="org.postgresql.Driver">
 			<url>jdbc:postgresql://localhost/simi</url>
-			<user>simi</user>
-			<password>simi</password>
+			<user></user>
+			<password></password>
 		</driver>
 	</database>
-
-	<mail name="outbound">
-		<smtp-host>localhost</smtp-host>
-		<smtp-port>25</smtp-port>
-	</mail>
- -->	
+-->	
 </web-app>

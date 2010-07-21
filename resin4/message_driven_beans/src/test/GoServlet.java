@@ -19,6 +19,8 @@ public class GoServlet extends HttpServlet
 	private static final Logger log = Logger.getLogger(GoServlet.class.getName());
 	
 	//@Inject @Named("delivery") BlockingQueue<String> queue;
+	
+	@SuppressWarnings("rawtypes")
 	@Inject @Named("delivery") BlockingQueue queue;
 	
 	@Override
@@ -28,6 +30,7 @@ public class GoServlet extends HttpServlet
 		this.go();
 	}
 
+	@SuppressWarnings("unchecked")
 	protected void go() throws ServletException
 	{
 		log.info("Enqueueing");

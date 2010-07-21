@@ -30,16 +30,21 @@
 	<jms:MemoryQueue>
 		<ee:Named>delivery</ee:Named>
 	</jms:MemoryQueue>
+
+	<cfg:MessageBeanConfig>
+		<ee:Startup/>
+		<resin:Service/>
+		<cfg:class>test.DeliveryListener</cfg:class>
+		<cfg:destination>#{delivery}</cfg:destination>
+	</cfg:MessageBeanConfig>
 	-->
 		
 	<jms:MemoryQueue>
 		<ee:Named>delivery</ee:Named>
 	</jms:MemoryQueue>
 
-	<cfg:MessageBeanConfig>
-		<resin:Service/>
-		<cfg:class>test.DeliveryListener</cfg:class>
-		<cfg:destination>#{delivery}</cfg:destination>
-	</cfg:MessageBeanConfig>
+	<ejb-message-bean class="test.DeliveryListener">
+		<destination>#{delivery}</destination>
+	</ejb-message-bean>
 
 </web-app>

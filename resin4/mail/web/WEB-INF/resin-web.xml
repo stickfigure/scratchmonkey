@@ -5,22 +5,9 @@
 			xmlns:test="urn:java:test"
 			>
 
-<!--
-	<servlet-mapping url-pattern="/api/Echo" servlet-class="test.EchoService">
-		<protocol uri="hessian:"/>
-	</servlet-mapping>
-
-	<database jndi-name="jdbc/ct">
-		<driver type="org.postgresql.Driver">
-			<url>jdbc:postgresql://localhost/simi</url>
-			<user>simi</user>
-			<password>simi</password>
-		</driver>
-	</database>
-
 	<mail name="outbound">
 		<smtp-host>localhost</smtp-host>
-		<smtp-port>25</smtp-port>
+		<smtp-port>2525</smtp-port>
+		<properties>mail.smtp.allow8bitmime=true</properties>
 	</mail>
- -->	
 </web-app>

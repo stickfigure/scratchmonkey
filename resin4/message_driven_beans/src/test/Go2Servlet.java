@@ -1,25 +1,21 @@
 package test;
 
 import java.io.IOException;
-import java.util.concurrent.BlockingQueue;
 import java.util.logging.Logger;
 
-import javax.inject.Inject;
-import javax.inject.Named;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(loadOnStartup=1, urlPatterns="/go")
-public class GoServlet extends HttpServlet
+@WebServlet(loadOnStartup=1, urlPatterns="/go2")
+public class Go2Servlet extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
-	private static final Logger log = Logger.getLogger(GoServlet.class.getName());
+	private static final Logger log = Logger.getLogger(Go2Servlet.class.getName());
 	
-	//@Inject @Named("delivery") BlockingQueue<String> queue;
-	@Inject @Named("delivery") BlockingQueue queue;
+//	@Inject @Named("a") FooBean a;
 	
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
@@ -30,15 +26,6 @@ public class GoServlet extends HttpServlet
 
 	protected void go() throws ServletException
 	{
-		log.info("Enqueueing");
-
-		try
-		{
-			this.queue.put("A Thing");
-		}
-		catch (InterruptedException e)
-		{
-			throw new ServletException(e);
-		}
+//		log.info("a is " + a);
 	}
 }

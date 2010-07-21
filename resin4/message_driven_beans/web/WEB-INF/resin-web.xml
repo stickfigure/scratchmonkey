@@ -1,14 +1,45 @@
 <web-app	xmlns="http://caucho.com/ns/resin"
 			xmlns:ee="urn:java:ee"
+			xmlns:resin="urn:java:com.caucho.resin"
+			xmlns:cfg="urn:java:com.caucho.ejb.cfg"
 			xmlns:jms="urn:java:com.caucho.jms"
 			xmlns:test="urn:java:test"
 			>
+
+	<!--
+	<test:DeliveryBlockingQueue/>
 
 	<jms:FileQueue>
 		<ee:Named>delivery</ee:Named>
 	</jms:FileQueue>
 	
+	<test:FooBean>
+		<ee:Named>a</ee:Named>
+		<test:bar>#{b}</test:bar>
+	</test:FooBean>
+	<test:FooBean>
+		<ee:Named>b</ee:Named>
+		<test:bar>#{a}</test:bar>
+		<test:dest>#{delivery}</test:dest>
+	</test:FooBean>
+	
 	<ejb-message-bean class="test.DeliveryListener">
 		<destination>#{delivery}</destination>
 	</ejb-message-bean>
+
+	<jms:MemoryQueue>
+		<ee:Named>delivery</ee:Named>
+	</jms:MemoryQueue>
+	-->
+		
+	<jms:MemoryQueue>
+		<ee:Named>delivery</ee:Named>
+	</jms:MemoryQueue>
+
+	<cfg:MessageBeanConfig>
+		<resin:Service/>
+		<cfg:class>test.DeliveryListener</cfg:class>
+		<cfg:destination>#{delivery}</cfg:destination>
+	</cfg:MessageBeanConfig>
+
 </web-app>

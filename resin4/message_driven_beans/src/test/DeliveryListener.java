@@ -5,7 +5,6 @@
 
 package test;
 
-import javax.ejb.MessageDriven;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.jms.JMSException;
@@ -19,7 +18,10 @@ import org.slf4j.LoggerFactory;
 /**
  * Process a queue message
  */
-@MessageDriven
+//@MessageDriven(name="delivery", activationConfig={
+//		@ActivationConfigProperty(propertyName="destinationType", propertyValue="javax.jms.Queue"),
+//		@ActivationConfigProperty(propertyName="destination", propertyValue="delivery")
+//})
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class DeliveryListener implements MessageListener
 {

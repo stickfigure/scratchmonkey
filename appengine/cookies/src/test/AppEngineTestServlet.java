@@ -39,11 +39,18 @@ public class AppEngineTestServlet extends HttpServlet
 
 		int nextVal = Integer.parseInt(cook.getValue()) + 1;
 		cook.setValue("" + nextVal);
-		cook.setMaxAge(60 * 60 * 24 * 365 * 2);
+		cook.setMaxAge(60 * 60 * 24 * 364);
 		cook.setPath("/appenginetest");
+		cook.setVersion(1);
 		
-		out.println("New value will be " + CookieUtils.toString(cook));
+		String setTo = cookieName + "=\"" + nextVal + "\"; Version=1; Max-Age=3600";
+//		String setTo = cookieName + "=" + nextVal + "; Version=1; Path=/; Max-Age=13072000; domain=.localhost";
+//		String expiry = "expires=Friday, 31-Dec-10 23:59:59 GMT";
+//		String setTo = cookieName + "=" + nextVal + "; Version=1; Path=/; " + expiry;
+		out.println("New value will be " + setTo);
+		resp.addHeader("Set-Cookie", setTo);
 		
-		resp.addCookie(cook);
+		//out.println("New value will be " + CookieUtils.toString(cook));
+		//resp.addCookie(cook);
 	}
 }

@@ -16,9 +16,11 @@ public class TestPanel extends Composite
 
 	public TestPanel()
 	{
+//		FlowPanel holder = new FlowPanel();
+//		holder.add(uiBinder.createAndBindUi(this));
+//		this.initWidget(holder);
 		this.initWidget(uiBinder.createAndBindUi(this));
 		
 		stuff.setText("blah!");
 	}
-
 }

@@ -1,0 +1,5 @@
+# Can't use the standard deserialization to reconstitute Throwables on GAE
+
+# Unfortunately we need to use a custom SerializerFactory to catch all the throwables
+#java.lang.StackTraceElement=unsuck.hessian.StackTraceElement
+#java.lang.Throwable=unsuck.hessian.ThrowableDeserializer

@@ -3,5 +3,6 @@ package test;
 
 public interface Hello
 {
-	public String hello(String name);
+	StackTraceElement element();
+	void exception();
 }

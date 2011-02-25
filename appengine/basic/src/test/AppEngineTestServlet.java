@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.appengine.repackaged.org.joda.time.DateTimeZone;
+import org.joda.time.DateTimeZone;
 
 @SuppressWarnings("serial")
 public class AppEngineTestServlet extends HttpServlet

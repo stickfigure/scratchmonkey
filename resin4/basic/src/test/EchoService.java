@@ -2,8 +2,8 @@ package test;
 
 import java.util.logging.Logger;
 
-import javax.annotation.Named;
-import javax.context.ApplicationScoped;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Named;
 
 @ApplicationScoped
 @Named("echoer")

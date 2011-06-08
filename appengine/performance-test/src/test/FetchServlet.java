@@ -28,6 +28,12 @@ public class FetchServlet extends HttpServlet
 		
 		List<Thing> things = ofy.query(Thing.class).list();
 		
+		for (Thing thing: things)
+		{
+			thing.getId();
+			thing.getValue();
+		}
+		
 		long elapsed = System.currentTimeMillis() - time;
 			
 		log.info("Elapsed millis: " + elapsed);

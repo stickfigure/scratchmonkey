@@ -14,5 +14,8 @@ public class Thing
 	}
 	
 	public @Id Long id;
+	public Long getId() { return this.id; }
+	
 	public String value;
+	public String getValue() { return this.value; }
 }

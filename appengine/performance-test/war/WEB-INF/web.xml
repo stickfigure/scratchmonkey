@@ -4,6 +4,8 @@ xmlns="http://java.sun.com/xml/ns/javaee"
 xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+
+	<!--
 	<servlet>
 		<servlet-name>Setup</servlet-name>
 		<servlet-class>test.SetupServlet</servlet-class>
@@ -12,6 +14,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-name>Setup</servlet-name>
 		<url-pattern>/setup</url-pattern>
 	</servlet-mapping>
+	-->
 
 	<servlet>
 		<servlet-name>Fetch</servlet-name>

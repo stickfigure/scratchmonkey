@@ -8,6 +8,7 @@ import com.googlecode.objectify.ObjectifyService;
 @Entity(name="Thing4")
 public class Thing
 {
+	/** Never do this in production */
 	static {
 		ObjectifyService.register(Thing.class);
 	}

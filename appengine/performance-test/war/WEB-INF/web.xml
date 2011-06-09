@@ -44,6 +44,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	</servlet-mapping>
 
 	<servlet>
+		<servlet-name>FetchLLSizeFirst</servlet-name>
+		<servlet-class>test.FetchServletLLSizeFirst</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FetchLLSizeFirst</servlet-name>
+		<url-pattern>/fetchLLSizeFirst</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
 		<servlet-name>FakeFetch</servlet-name>
 		<servlet-class>test.FakeFetchServlet</servlet-class>
 	</servlet>

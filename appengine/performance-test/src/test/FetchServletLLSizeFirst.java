@@ -14,10 +14,10 @@ import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.Query;
 
 @SuppressWarnings("serial")
-public class FetchServletLL extends HttpServlet
+public class FetchServletLLSizeFirst extends HttpServlet
 {
 	/** */
-	private static final Logger log = Logger.getLogger(FetchServletLL.class.getName());
+	private static final Logger log = Logger.getLogger(FetchServletLLSizeFirst.class.getName());
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException
 	{
@@ -29,6 +29,8 @@ public class FetchServletLL extends HttpServlet
 			DatastoreServiceFactory.getDatastoreService()
 				.prepare(new Query(Thing.class.getAnnotation(javax.persistence.Entity.class).name()))
 				.asList(FetchOptions.Builder.withDefaults());
+
+		things.size();
 		
 		for (Entity ent: things)
 		{

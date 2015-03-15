@@ -1,0 +1,1 @@
+Simple projects which exercise bugs and features of various J2EE containers.
